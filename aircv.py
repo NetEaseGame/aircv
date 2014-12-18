@@ -266,6 +266,7 @@ def main():
     imsrc = imread('testdata/2s.png')
     imsch = imread('testdata/2t.png')
     result = find_all_template(imsrc, imsch)
+    print result
     pts = []
     for pt, score in result:
         mark_point(imsrc, pt)
