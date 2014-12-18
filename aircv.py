@@ -29,6 +29,11 @@ ref: <http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html#
 
 ## Generate a blank image
     img = np.zeros((512,512,3), np.uint8)
+
+## Sort points
+    pts = [(0, 7), (3, 5), (2, 6)]
+    
+    sorted(pts, key=lambda p: p[0]) # sort by point x row, expect [(0, 7), (2, 6), (3, 5)]
 '''
 
 __version__ = "1.01"
@@ -36,6 +41,8 @@ __project_url__ = "https://github.com/netease/aircv"
 
 import cv2
 import numpy as np
+
+DEBUG = False
 
 def mark_point(img, (x, y)):
     ''' 调试用的: 标记一个点 '''
@@ -57,7 +64,7 @@ def imread(filename):
     im = cv2.imread(filename)
     assert im != None
     return im
-    
+
 def find_all_template(im_source, im_search, threshold=0.5, maxcnt=0, rgb=False, bgremove=False):
     '''
     Locate image position with cv2.templateFind
@@ -94,12 +101,8 @@ def find_all_template(im_source, im_search, threshold=0.5, maxcnt=0, rgb=False, 
         if bgremove:
             s_gray = cv2.Canny(s_gray, 100, 200)
             i_gray = cv2.Canny(i_gray, 100, 200)
-        # if DEBUG:
-            # toolbox.showImage(s_gray)
-            # toolbox.showImage(i_gray)
 
         res = cv2.matchTemplate(i_gray, s_gray, method)
-    # toolbox.showImage(res)
     w, h = im_search.shape[1], im_search.shape[0]
 
     result = []
@@ -109,8 +112,8 @@ def find_all_template(im_source, im_search, threshold=0.5, maxcnt=0, rgb=False, 
             top_left = min_loc
         else:
             top_left = max_loc
-
-        print 'templmatch_value(thresh:%.1f) = %.3f' %(threshold, max_val) # not show debug
+        if DEBUG: 
+            print 'templmatch_value(thresh:%.1f) = %.3f' %(threshold, max_val) # not show debug
         if max_val < threshold:
             break
         # calculator middle point
@@ -124,6 +127,9 @@ def find_all_template(im_source, im_search, threshold=0.5, maxcnt=0, rgb=False, 
 
 sift = cv2.SIFT()
 
+FLANN_INDEX_KDTREE = 0
+flann = cv2.FlannBasedMatcher({'algorithm': FLANN_INDEX_KDTREE, 'trees': 5}, dict(checks = 50))
+
 def sift_count(img):
     kp, des = sift.detectAndCompute(img, None)
     return len(kp)
@@ -132,18 +138,12 @@ def find_sift(im_source, im_search, min_match_count=10):
     '''
     SIFT特征点匹配
     '''
+    return find_all_sift(im_source, im_search, maxcnt=1)
     kp_sch, des_sch = sift.detectAndCompute(im_search, None)
     kp_src, des_src = sift.detectAndCompute(im_source, None)
 
     if len(kp_sch) < min_match_count or len(kp_src) < min_match_count:
         return None
-
-    # 使用flann方法去查找匹配点
-    FLANN_INDEX_KDTREE = 0
-    index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
-    search_params = dict(checks = 50)
-
-    flann = cv2.FlannBasedMatcher(index_params, search_params)
 
     matches = flann.knnMatch(des_sch, des_src, k=2)
 
@@ -151,7 +151,7 @@ def find_sift(im_source, im_search, min_match_count=10):
     for m,n in matches:
         if m.distance < 0.7*n.distance:
             good.append(m)
-
+    print len(good)
     if len(good) > min_match_count:
         sch_pts = np.float32([kp_sch[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
         img_pts = np.float32([kp_src[m.trainIdx].pt for m in good]).reshape(-1, 1, 2) 
@@ -175,6 +175,85 @@ def find_sift(im_source, im_search, min_match_count=10):
     else:
         return None
 
+def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
+    '''
+    使用sift算法进行多个相同元素的查找
+    Args:
+        im_source(string): 图像、素材
+        im_search(string): 需要查找的图片
+        threshold: 阈值，当相识度小于该阈值的时候，就忽略掉
+        maxcnt: 限制匹配的数量
+
+    Returns:
+        A tuple of found [(point, rectangle), ...]
+        rectangle is a 4 points list
+    '''
+    kp_sch, des_sch = sift.detectAndCompute(im_search, None)
+    if len(kp_sch) < min_match_count:
+        return None
+
+    kp_src, des_src = sift.detectAndCompute(im_source, None)
+    if len(kp_src) < min_match_count:
+        return None
+
+    h, w = im_search.shape[1:]
+
+    result = []
+    while True:
+        matches = flann.knnMatch(des_sch, des_src, k=2)
+        good = []
+        for m,n in matches:
+            if m.distance < 0.7*n.distance:
+                good.append(m)
+
+        if len(good) < min_match_count:
+            break
+
+        sch_pts = np.float32([kp_sch[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
+        img_pts = np.float32([kp_src[m.trainIdx].pt for m in good]).reshape(-1, 1, 2) 
+
+        # M是转化矩阵
+        M, mask = cv2.findHomography(sch_pts, img_pts, cv2.RANSAC, 5.0)
+        # matchesMask = mask.ravel().tolist()
+
+        h, w = im_search.shape[:2]
+        pts = np.float32([ [0, 0], [0, h-1], [w-1, h-1], [w-1, 0] ]).reshape(-1, 1, 2)
+        dst = cv2.perspectiveTransform(pts, M)
+
+        # trans numpy arrary to python list
+        # [(a, b), (a1, b1), ...]
+        pypts = []
+        for npt in dst.astype(int).tolist():
+            pypts.append(tuple(npt[0]))
+
+        lt, br = pypts[0], pypts[2]
+        middle_point = (lt[0]+w/2, lt[1]+h/2)
+
+        result.append((middle_point, pypts))
+
+        if maxcnt and len(result) >= maxcnt:
+            break
+        
+        # 从特征点中删掉那些已经匹配过的
+        qindexes, tindexes = [], []
+        for m in good:
+            qindexes.append(m.queryIdx) # need to remove from kp_sch
+            tindexes.append(m.trainIdx) # need to remove from kp_img
+
+        def filter_index(indexes, arr):
+            r = np.ndarray(0, np.float32)
+            for i, item in enumerate(arr):
+                if i not in qindexes:
+                    r = np.append(r, item)
+            return r
+        # print type(des_sch[0][0])
+        kp_sch = filter_index(qindexes, kp_sch)
+        des_sch =filter_index(qindexes, des_sch)
+        kp_src = filter_index(tindexes, kp_src)
+        des_src = filter_index(tindexes, des_src)
+
+    return result
+
 def main():
     print cv2.IMREAD_COLOR
     print cv2.IMREAD_GRAYSCALE
@@ -183,18 +262,30 @@ def main():
     imsch = cv2.imread('testdata/1t.png')
     assert imsrc != None and imsch != None
 
-    print find_all_template(imsrc, imsch)
-    _, fourpts = find_sift(imsrc, imsch)
-    print find_sift(imsrc, imsch)
 
+    imsrc = imread('testdata/2s.png')
+    imsch = imread('testdata/2t.png')
+    result = find_all_template(imsrc, imsch)
+    pts = []
+    for pt, score in result:
+        mark_point(imsrc, pt)
+        pts.append(pt)
+    # pts.sort()
+    show(imsrc)
+    # print pts
+    # print sorted(pts, key=lambda p: p[0])
+    
+    print 'SIFT count=', sift_count(imsch)
+    print find_sift(imsrc, imsch)
+    print find_all_sift(imsrc, imsch)
+    '''
     for i in range(4):
         cv2.line(imsrc, fourpts[i], fourpts[(i+1)%4], (0, 0, 0), 5)
         # print pt.astype(np.int32).tolist()
         # print pt, pt[0][0]
         mark_point(imsrc, fourpts[i])
     # show(imsrc)
-    
-    print sift_count(imsrc)
+    ''' 
 
 if __name__ == '__main__':
     main()
