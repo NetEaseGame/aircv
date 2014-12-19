@@ -62,7 +62,8 @@ def show(img):
 def imread(filename):
     ''' make sure filename exists '''
     im = cv2.imread(filename)
-    assert im != None
+    if im == None:
+        raise RuntimeError("file: '%s' not exists" % filename)
     return im
 
 def find_all_template(im_source, im_search, threshold=0.5, maxcnt=0, rgb=False, bgremove=False):
@@ -254,15 +255,36 @@ def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
 
     return result
 
+def find_all(im_source, im_search, maxcnt=0):
+    '''
+    优先SIFT，之后Template
+    @ return [(x,y), ...]
+    '''
+    if sift_count(im_search) >= 20:
+        result = find_all_sift(im_source, im_search, maxcnt=maxcnt)
+    else:
+        result = find_all_template(im_source, im_search, maxcnt=maxcnt)
+    if result == None:
+        return []
+    return [point for point, score in result]
+
+def find(im_source, im_search):
+    '''
+    Only find maximum one object
+    '''
+    r = find_all(im_source, im_search, maxcnt=1)
+    return r[0] if r else None
+
 def main():
     print cv2.IMREAD_COLOR
     print cv2.IMREAD_GRAYSCALE
     print cv2.IMREAD_UNCHANGED
-    imsrc = cv2.imread('testdata/1s.png')
-    imsch = cv2.imread('testdata/1t.png')
-    assert imsrc != None and imsch != None
+    imsrc = imread('testdata/1s.png')
+    imsch = imread('testdata/1t.png')
 
-
+    pt = find(imsrc, imsch)
+    mark_point(imsrc, pt)
+    show(imsrc)
     imsrc = imread('testdata/2s.png')
     imsch = imread('testdata/2t.png')
     result = find_all_template(imsrc, imsch)
