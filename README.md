@@ -1,7 +1,8 @@
 aircv
 =====
-
 Python Lib based on python-opencv2 *for python2.7+*
+
+通过`pydoc`生成的文档 <http://netease.github.io/aircv/>
 
 ## Usage
 
