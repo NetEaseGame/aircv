@@ -28,7 +28,8 @@ ref: <http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html#
     cv2.destroyAllWindows()
 
 ## Generate a blank image
-    img = np.zeros((512,512,3), np.uint8)
+    size = (height, width, channels) = (512, 256, 3)
+    img = np.zeros(size, np.uint8)
 
 ## Sort points
     pts = [(0, 7), (3, 5), (2, 6)]
@@ -60,11 +61,22 @@ def show(img):
     cv2.destroyAllWindows()
 
 def imread(filename):
-    ''' make sure filename exists '''
+    ''' 
+    Like cv2.imread
+    This function will make sure filename exists 
+    '''
     im = cv2.imread(filename)
     if im == None:
         raise RuntimeError("file: '%s' not exists" % filename)
     return im
+
+def find_template(im_source, im_search, threshold=0.5, rgb=False, bgremove=False):
+    '''
+    @return find location
+    if not found; return None
+    '''
+    result = find_all_template(im_source, im_search, threshold, 1, rgb, bgremove)
+    return result[0] if result else None
 
 def find_all_template(im_source, im_search, threshold=0.5, maxcnt=0, rgb=False, bgremove=False):
     '''
@@ -140,41 +152,7 @@ def find_sift(im_source, im_search, min_match_count=10):
     SIFT特征点匹配
     '''
     return find_all_sift(im_source, im_search, maxcnt=1)
-    kp_sch, des_sch = sift.detectAndCompute(im_search, None)
-    kp_src, des_src = sift.detectAndCompute(im_source, None)
-
-    if len(kp_sch) < min_match_count or len(kp_src) < min_match_count:
-        return None
-
-    matches = flann.knnMatch(des_sch, des_src, k=2)
-
-    good = []
-    for m,n in matches:
-        if m.distance < 0.7*n.distance:
-            good.append(m)
-    print len(good)
-    if len(good) > min_match_count:
-        sch_pts = np.float32([kp_sch[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
-        img_pts = np.float32([kp_src[m.trainIdx].pt for m in good]).reshape(-1, 1, 2) 
-
-        # M是转化矩阵
-        M, mask = cv2.findHomography(sch_pts, img_pts, cv2.RANSAC, 5.0)
-        # matchesMask = mask.ravel().tolist()
-
-        h, w = im_search.shape[:2]
-        pts = np.float32([ [0, 0], [0, h-1], [w-1, h-1], [w-1, 0] ]).reshape(-1, 1, 2)
-        dst = cv2.perspectiveTransform(pts, M)
-
-        # trans numpy arrary to python list
-        # [(a, b), (a1, b1), ...]
-        pypts = []
-        for npt in dst.astype(int).tolist():
-            pypts.append(tuple(npt[0]))
-
-        lt, br = pypts[0], pypts[2]
-        return (lt[0]+w/2, lt[1]+h/2), pypts
-    else:
-        return None
+    
 
 def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
     '''
