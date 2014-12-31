@@ -7,7 +7,7 @@ try: from distutils.core import setup
 except ImportError: from setuptools import setup
 
 setup(
-      name='pyignore',
+      name='aircv',
       version=aircv.__version__,
       license="MIT",
       description='Image utils based on python-opencv2',
