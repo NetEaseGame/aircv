@@ -37,7 +37,7 @@ ref: <http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html#
     sorted(pts, key=lambda p: p[0]) # sort by point x row, expect [(0, 7), (2, 6), (3, 5)]
 '''
 
-__version__ = "1.01"
+__version__ = "1.02"
 __project_url__ = "https://github.com/netease/aircv"
 
 import cv2
