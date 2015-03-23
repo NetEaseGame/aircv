@@ -14,7 +14,9 @@ Python Lib based on python-opencv2 *for python2.7+*
 
     print ac.find_sift(imsrc, imsch)
 
-期望如下输出, 查找失败就是None
+期望如下输出, 查找失败就是[]
+
+中点坐标， 目标图像周围四个点的坐标
 
     ((215, 45), [(160, 24), (161, 66), (270, 66), (269, 24)])
 

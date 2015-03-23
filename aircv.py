@@ -37,7 +37,7 @@ ref: <http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html#
     sorted(pts, key=lambda p: p[0]) # sort by point x row, expect [(0, 7), (2, 6), (3, 5)]
 '''
 
-__version__ = "1.02"
+__version__ = "1.03"
 __project_url__ = "https://github.com/netease/aircv"
 
 import cv2
@@ -151,7 +151,7 @@ def find_sift(im_source, im_search, min_match_count=10):
     '''
     SIFT特征点匹配
     '''
-    return find_all_sift(im_source, im_search, maxcnt=1)
+    return find_all_sift(im_source, im_search, min_match_count, maxcnt=1)
     
 
 def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
