@@ -66,7 +66,7 @@ def imread(filename):
     This function will make sure filename exists 
     '''
     im = cv2.imread(filename)
-    if im == None:
+    if im is None:
         raise RuntimeError("file: '%s' not exists" % filename)
     return im
 
@@ -242,7 +242,7 @@ def find_all(im_source, im_search, maxcnt=0):
         result = find_all_sift(im_source, im_search, maxcnt=maxcnt)
     else:
         result = find_all_template(im_source, im_search, maxcnt=maxcnt)
-    if result == None:
+    if result is None:
         return []
     return [point for point, score in result]
 
