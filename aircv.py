@@ -35,15 +35,30 @@ ref: <http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html#
     pts = [(0, 7), (3, 5), (2, 6)]
     
     sorted(pts, key=lambda p: p[0]) # sort by point x row, expect [(0, 7), (2, 6), (3, 5)]
+
+## Crop image
+    croped = img[y0:y1, x0:x1]
+
 '''
 
-__version__ = "1.03"
+__version__ = "0.1.4"
 __project_url__ = "https://github.com/netease/aircv"
 
 import cv2
 import numpy as np
 
 DEBUG = False
+
+def crop(img, (x0, y0), end=(0, 0), rect=(0, 0)):
+    ''' Crop image '''
+    (h, w) = img.shape[:2]
+    (x1, y1) = (w, h)
+    if end != (0, 0):
+        (x1, y1) = end
+    if rect != (0, 0):
+        (x1, y1) = (x0+rect[0], y0+rect[1])
+    (x1, y1) = min(max(x0, x1), w), min(max(y0, y1), h)
+    return img[y0:y1, x0:x1]
 
 def mark_point(img, (x, y)):
     ''' 调试用的: 标记一个点 '''
