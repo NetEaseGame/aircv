@@ -2,7 +2,7 @@ aircv
 =====
 Python Lib based on python-opencv2 *for python2.7+*
 
-文档地址: <http://aircv.readthedocs.org/zh/latest/>
+通过`pydoc`生成的文档 <http://netease.github.io/aircv/>
 
 ## Usage
 
