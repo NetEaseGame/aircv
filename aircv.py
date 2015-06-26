@@ -153,7 +153,7 @@ def find_all_template(im_source, im_search, threshold=0.5, maxcnt=0, rgb=False, 
         cv2.floodFill(res, None, max_loc, (-1000,), max_val-threshold+0.1, 1, flags=cv2.FLOODFILL_FIXED_RANGE)
     return result
 
-sift = cv2.SIFT()
+sift = cv2.SIFT(edgeThreshold=100)
 
 FLANN_INDEX_KDTREE = 0
 flann = cv2.FlannBasedMatcher({'algorithm': FLANN_INDEX_KDTREE, 'trees': 5}, dict(checks = 50))
@@ -166,7 +166,10 @@ def find_sift(im_source, im_search, min_match_count=10):
     '''
     SIFT特征点匹配
     '''
-    return find_all_sift(im_source, im_search, min_match_count, maxcnt=1)
+    res = find_all_sift(im_source, im_search, min_match_count, maxcnt=1)
+    if len(res) == 0:
+        return None
+    return res[0]
     
 
 def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
@@ -180,6 +183,7 @@ def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
 
     Returns:
         A tuple of found [(point, rectangle), ...]
+        A tuple of found [{"point": point, "rectangle": rectangle, "confidence": 0.76}, ...]
         rectangle is a 4 points list
     '''
     kp_sch, des_sch = sift.detectAndCompute(im_search, None)
@@ -197,7 +201,7 @@ def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
         matches = flann.knnMatch(des_sch, des_src, k=2)
         good = []
         for m,n in matches:
-            if m.distance < 0.7*n.distance:
+            if m.distance < 0.9*n.distance:
                 good.append(m)
 
         if len(good) < min_match_count:
@@ -223,7 +227,13 @@ def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
         lt, br = pypts[0], pypts[2]
         middle_point = (lt[0]+w/2, lt[1]+h/2)
 
-        result.append((middle_point, pypts))
+        # result.append((middle_point, pypts))
+        print len(dst), len(kp_sch)
+        result.append(dict(
+            result = middle_point,
+            rectangle = pypts,
+            confidence = 1.0*len(dst)/len(kp_sch)
+        ))
 
         if maxcnt and len(result) >= maxcnt:
             break
@@ -241,8 +251,8 @@ def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
                     r = np.append(r, item)
             return r
         # print type(des_sch[0][0])
-        kp_sch = filter_index(qindexes, kp_sch)
-        des_sch =filter_index(qindexes, des_sch)
+        # kp_sch = filter_index(qindexes, kp_sch)
+        # des_sch =filter_index(qindexes, des_sch)
         kp_src = filter_index(tindexes, kp_src)
         des_src = filter_index(tindexes, des_src)
 
