@@ -22,14 +22,12 @@ def sift_test():
         print 'Not same'
 
 def tmpl_test():
-    t1 = ac.imread("testdata/game1-1.jpg")
-    t2 = ac.imread("testdata/game1-2.jpg")
-    t3 = ac.imread("testdata/game1-3.jpg")
+    t1 = ac.imread("testdata/2s.png")
+    t2 = ac.imread("testdata/2t.png")
     import time
     start = time.time()
-    print ac.find_template(t1, t2)
+    print ac.find_all_template(t1, t2)
     print time.time() - start
-    print ac.find_template(t1, t3)
 
 if __name__ == '__main__':
     sift_test()

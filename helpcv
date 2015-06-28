@@ -1,0 +1,1736 @@
+Help on module cv2:
+
+NAME
+    cv2
+
+FILE
+    c:\python27\lib\site-packages\cv2.pyd
+
+SUBMODULES
+    cv
+
+CLASSES
+    exceptions.Exception(exceptions.BaseException)
+        error
+    
+    class error(exceptions.Exception)
+     |  Method resolution order:
+     |      error
+     |      exceptions.Exception
+     |      exceptions.BaseException
+     |      __builtin__.object
+     |  
+     |  Data descriptors defined here:
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.Exception:
+     |  
+     |  __init__(...)
+     |      x.__init__(...) initializes x; see help(type(x)) for signature
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from exceptions.Exception:
+     |  
+     |  __new__ = <built-in method __new__ of type object>
+     |      T.__new__(S, ...) -> a new object with type S, a subtype of T
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from exceptions.BaseException:
+     |  
+     |  __delattr__(...)
+     |      x.__delattr__('name') <==> del x.name
+     |  
+     |  __getattribute__(...)
+     |      x.__getattribute__('name') <==> x.name
+     |  
+     |  __getitem__(...)
+     |      x.__getitem__(y) <==> x[y]
+     |  
+     |  __getslice__(...)
+     |      x.__getslice__(i, j) <==> x[i:j]
+     |      
+     |      Use of negative indices is not supported.
+     |  
+     |  __reduce__(...)
+     |  
+     |  __repr__(...)
+     |      x.__repr__() <==> repr(x)
+     |  
+     |  __setattr__(...)
+     |      x.__setattr__('name', value) <==> x.name = value
+     |  
+     |  __setstate__(...)
+     |  
+     |  __str__(...)
+     |      x.__str__() <==> str(x)
+     |  
+     |  __unicode__(...)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from exceptions.BaseException:
+     |  
+     |  __dict__
+     |  
+     |  args
+     |  
+     |  message
+
+FUNCTIONS
+    ANN_MLP(...)
+        ANN_MLP([layerSizes[, activateFunc[, fparam1[, fparam2]]]]) -> <ANN_MLP object>
+    
+    Algorithm__create(...)
+        Algorithm__create(name) -> retval
+    
+    Algorithm_getList(...)
+        Algorithm_getList() -> algorithms
+    
+    BFMatcher(...)
+        BFMatcher([, normType[, crossCheck]]) -> <BFMatcher object>
+    
+    BOWImgDescriptorExtractor(...)
+        BOWImgDescriptorExtractor(dextractor, dmatcher) -> <BOWImgDescriptorExtractor object>
+    
+    BOWKMeansTrainer(...)
+        BOWKMeansTrainer(clusterCount[, termcrit[, attempts[, flags]]]) -> <BOWKMeansTrainer object>
+    
+    BRISK(...)
+        BRISK([, thresh[, octaves[, patternScale]]]) -> <BRISK object>  or  BRISK(radiusList, numberList[, dMax[, dMin[, indexChange]]]) -> <BRISK object>
+    
+    BackgroundSubtractorMOG(...)
+        BackgroundSubtractorMOG([history, nmixtures, backgroundRatio[, noiseSigma]]) -> <BackgroundSubtractorMOG object>
+    
+    BackgroundSubtractorMOG2(...)
+        BackgroundSubtractorMOG2([history, varThreshold[, bShadowDetection]]) -> <BackgroundSubtractorMOG2 object>
+    
+    Boost(...)
+        Boost([trainData, tflag, responses[, varIdx[, sampleIdx[, varType[, missingDataMask[, params]]]]]]) -> <Boost object>
+    
+    CamShift(...)
+        CamShift(probImage, window, criteria) -> retval, window
+    
+    Canny(...)
+        Canny(image, threshold1, threshold2[, edges[, apertureSize[, L2gradient]]]) -> edges
+    
+    CascadeClassifier(...)
+        CascadeClassifier([filename]) -> <CascadeClassifier object>
+    
+    DMatch(...)
+        DMatch() -> <DMatch object>  or  DMatch(_queryIdx, _trainIdx, _distance) -> <DMatch object>  or  DMatch(_queryIdx, _trainIdx, _imgIdx, _distance) -> <DMatch object>
+    
+    DTree(...)
+        DTree() -> <DTree object>
+    
+    DescriptorExtractor_create(...)
+        DescriptorExtractor_create(descriptorExtractorType) -> retval
+    
+    DescriptorMatcher_create(...)
+        DescriptorMatcher_create(descriptorMatcherType) -> retval
+    
+    EM(...)
+        EM([, nclusters[, covMatType[, termCrit]]]) -> <EM object>
+    
+    ERTrees(...)
+        ERTrees() -> <ERTrees object>
+    
+    FastFeatureDetector(...)
+        FastFeatureDetector([, threshold[, nonmaxSuppression]]) -> <FastFeatureDetector object>
+    
+    Feature2D_create(...)
+        Feature2D_create(name) -> retval
+    
+    FeatureDetector_create(...)
+        FeatureDetector_create(detectorType) -> retval
+    
+    FileNode(...)
+        FileNode() -> <FileNode object>
+    
+    FileStorage(...)
+        FileStorage([source, flags[, encoding]]) -> <FileStorage object>
+    
+    FlannBasedMatcher(...)
+        FlannBasedMatcher([, indexParams[, searchParams]]) -> <FlannBasedMatcher object>
+    
+    GBTrees(...)
+        GBTrees([trainData, tflag, responses[, varIdx[, sampleIdx[, varType[, missingDataMask[, params]]]]]]) -> <GBTrees object>
+    
+    GFTTDetector(...)
+        GFTTDetector([, maxCorners[, qualityLevel[, minDistance[, blockSize[, useHarrisDetector[, k]]]]]]) -> <GFTTDetector object>
+    
+    GaussianBlur(...)
+        GaussianBlur(src, ksize, sigmaX[, dst[, sigmaY[, borderType]]]) -> dst
+    
+    GridAdaptedFeatureDetector(...)
+        GridAdaptedFeatureDetector([, detector[, maxTotalKeypoints[, gridRows[, gridCols]]]]) -> <GridAdaptedFeatureDetector object>
+    
+    HOGDescriptor(...)
+        HOGDescriptor() -> <HOGDescriptor object>  or  HOGDescriptor(_winSize, _blockSize, _blockStride, _cellSize, _nbins[, _derivAperture[, _winSigma[, _histogramNormType[, _L2HysThreshold[, _gammaCorrection[, _nlevels]]]]]]) -> <HOGDescriptor object>  or  HOGDescriptor(filename) -> <HOGDescriptor object>
+    
+    HOGDescriptor_getDaimlerPeopleDetector(...)
+        HOGDescriptor_getDaimlerPeopleDetector() -> retval
+    
+    HOGDescriptor_getDefaultPeopleDetector(...)
+        HOGDescriptor_getDefaultPeopleDetector() -> retval
+    
+    HoughCircles(...)
+        HoughCircles(image, method, dp, minDist[, circles[, param1[, param2[, minRadius[, maxRadius]]]]]) -> circles
+    
+    HoughLines(...)
+        HoughLines(image, rho, theta, threshold[, lines[, srn[, stn]]]) -> lines
+    
+    HoughLinesP(...)
+        HoughLinesP(image, rho, theta, threshold[, lines[, minLineLength[, maxLineGap]]]) -> lines
+    
+    HuMoments(...)
+        HuMoments(m[, hu]) -> hu
+    
+    KDTree(...)
+        KDTree() -> <KDTree object>  or  KDTree(points[, copyAndReorderPoints]) -> <KDTree object>  or  KDTree(points, _labels[, copyAndReorderPoints]) -> <KDTree object>
+    
+    KNearest(...)
+        KNearest([trainData, responses[, sampleIdx[, isRegression[, max_k]]]]) -> <KNearest object>
+    
+    KalmanFilter(...)
+        KalmanFilter([dynamParams, measureParams[, controlParams[, type]]]) -> <KalmanFilter object>
+    
+    KeyPoint(...)
+        KeyPoint([x, y, _size[, _angle[, _response[, _octave[, _class_id]]]]]) -> <KeyPoint object>
+    
+    LUT(...)
+        LUT(src, lut[, dst[, interpolation]]) -> dst
+    
+    Laplacian(...)
+        Laplacian(src, ddepth[, dst[, ksize[, scale[, delta[, borderType]]]]]) -> dst
+    
+    MSER(...)
+        MSER([, _delta[, _min_area[, _max_area[, _max_variation[, _min_diversity[, _max_evolution[, _area_threshold[, _min_margin[, _edge_blur_size]]]]]]]]]) -> <MSER object>
+    
+    Mahalanobis(...)
+        Mahalanobis(v1, v2, icovar) -> retval
+    
+    NormalBayesClassifier(...)
+        NormalBayesClassifier([trainData, responses[, varIdx[, sampleIdx]]]) -> <NormalBayesClassifier object>
+    
+    ORB(...)
+        ORB([, nfeatures[, scaleFactor[, nlevels[, edgeThreshold[, firstLevel[, WTA_K[, scoreType[, patchSize]]]]]]]]) -> <ORB object>
+    
+    PCABackProject(...)
+        PCABackProject(data, mean, eigenvectors[, result]) -> result
+    
+    PCACompute(...)
+        PCACompute(data[, mean[, eigenvectors[, maxComponents]]]) -> mean, eigenvectors
+    
+    PCAComputeVar(...)
+        PCAComputeVar(data, retainedVariance[, mean[, eigenvectors]]) -> mean, eigenvectors
+    
+    PCAProject(...)
+        PCAProject(data, mean, eigenvectors[, result]) -> result
+    
+    PSNR(...)
+        PSNR(src1, src2) -> retval
+    
+    PyramidAdaptedFeatureDetector(...)
+        PyramidAdaptedFeatureDetector(detector[, maxLevel]) -> <PyramidAdaptedFeatureDetector object>
+    
+    RQDecomp3x3(...)
+        RQDecomp3x3(src[, mtxR[, mtxQ[, Qx[, Qy[, Qz]]]]]) -> retval, mtxR, mtxQ, Qx, Qy, Qz
+    
+    RTrees(...)
+        RTrees() -> <RTrees object>
+    
+    Rodrigues(...)
+        Rodrigues(src[, dst[, jacobian]]) -> dst, jacobian
+    
+    SIFT(...)
+        SIFT([, nfeatures[, nOctaveLayers[, contrastThreshold[, edgeThreshold[, sigma]]]]]) -> <SIFT object>
+    
+    SURF(...)
+        SURF([hessianThreshold[, nOctaves[, nOctaveLayers[, extended[, upright]]]]]) -> <SURF object>
+    
+    SVBackSubst(...)
+        SVBackSubst(w, u, vt, rhs[, dst]) -> dst
+    
+    SVDecomp(...)
+        SVDecomp(src[, w[, u[, vt[, flags]]]]) -> w, u, vt
+    
+    SVM(...)
+        SVM([trainData, responses[, varIdx[, sampleIdx[, params]]]]) -> <SVM object>
+    
+    Scharr(...)
+        Scharr(src, ddepth, dx, dy[, dst[, scale[, delta[, borderType]]]]) -> dst
+    
+    SimpleBlobDetector(...)
+        SimpleBlobDetector([, parameters]) -> <SimpleBlobDetector object>
+    
+    SimpleBlobDetector_Params(...)
+        SimpleBlobDetector_Params() -> <SimpleBlobDetector_Params object>
+    
+    Sobel(...)
+        Sobel(src, ddepth, dx, dy[, dst[, ksize[, scale[, delta[, borderType]]]]]) -> dst
+    
+    StarDetector(...)
+        StarDetector([, _maxSize[, _responseThreshold[, _lineThresholdProjected[, _lineThresholdBinarized[, _suppressNonmaxSize]]]]]) -> <StarDetector object>
+    
+    StereoBM(...)
+        StereoBM([preset[, ndisparities[, SADWindowSize]]]) -> <StereoBM object>
+    
+    StereoSGBM(...)
+        StereoSGBM([minDisparity, numDisparities, SADWindowSize[, P1[, P2[, disp12MaxDiff[, preFilterCap[, uniquenessRatio[, speckleWindowSize[, speckleRange[, fullDP]]]]]]]]]) -> <StereoSGBM object>
+    
+    StereoVar(...)
+        StereoVar([levels, pyrScale, nIt, minDisp, maxDisp, poly_n, poly_sigma, fi, lambda, penalization, cycle, flags]) -> <StereoVar object>
+    
+    Subdiv2D(...)
+        Subdiv2D([rect]) -> <Subdiv2D object>
+    
+    VideoCapture(...)
+        VideoCapture() -> <VideoCapture object>  or  VideoCapture(filename) -> <VideoCapture object>  or  VideoCapture(device) -> <VideoCapture object>
+    
+    VideoWriter(...)
+        VideoWriter([filename, fourcc, fps, frameSize[, isColor]]) -> <VideoWriter object>
+    
+    absdiff(...)
+        absdiff(src1, src2[, dst]) -> dst
+    
+    accumulate(...)
+        accumulate(src, dst[, mask]) -> None
+    
+    accumulateProduct(...)
+        accumulateProduct(src1, src2, dst[, mask]) -> None
+    
+    accumulateSquare(...)
+        accumulateSquare(src, dst[, mask]) -> None
+    
+    accumulateWeighted(...)
+        accumulateWeighted(src, dst, alpha[, mask]) -> None
+    
+    adaptiveBilateralFilter(...)
+        adaptiveBilateralFilter(src, ksize, sigmaSpace[, dst[, maxSigmaColor[, anchor[, borderType]]]]) -> dst
+    
+    adaptiveThreshold(...)
+        adaptiveThreshold(src, maxValue, adaptiveMethod, thresholdType, blockSize, C[, dst]) -> dst
+    
+    add(...)
+        add(src1, src2[, dst[, mask[, dtype]]]) -> dst
+    
+    addWeighted(...)
+        addWeighted(src1, alpha, src2, beta, gamma[, dst[, dtype]]) -> dst
+    
+    applyColorMap(...)
+        applyColorMap(src, colormap[, dst]) -> dst
+    
+    approxPolyDP(...)
+        approxPolyDP(curve, epsilon, closed[, approxCurve]) -> approxCurve
+    
+    arcLength(...)
+        arcLength(curve, closed) -> retval
+    
+    arrowedLine(...)
+        arrowedLine(img, pt1, pt2, color[, thickness[, line_type[, shift[, tipLength]]]]) -> None
+    
+    batchDistance(...)
+        batchDistance(src1, src2, dtype[, dist[, nidx[, normType[, K[, mask[, update[, crosscheck]]]]]]]) -> dist, nidx
+    
+    bilateralFilter(...)
+        bilateralFilter(src, d, sigmaColor, sigmaSpace[, dst[, borderType]]) -> dst
+    
+    bitwise_and(...)
+        bitwise_and(src1, src2[, dst[, mask]]) -> dst
+    
+    bitwise_not(...)
+        bitwise_not(src[, dst[, mask]]) -> dst
+    
+    bitwise_or(...)
+        bitwise_or(src1, src2[, dst[, mask]]) -> dst
+    
+    bitwise_xor(...)
+        bitwise_xor(src1, src2[, dst[, mask]]) -> dst
+    
+    blur(...)
+        blur(src, ksize[, dst[, anchor[, borderType]]]) -> dst
+    
+    borderInterpolate(...)
+        borderInterpolate(p, len, borderType) -> retval
+    
+    boundingRect(...)
+        boundingRect(points) -> retval
+    
+    boxFilter(...)
+        boxFilter(src, ddepth, ksize[, dst[, anchor[, normalize[, borderType]]]]) -> dst
+    
+    buildOpticalFlowPyramid(...)
+        buildOpticalFlowPyramid(img, winSize, maxLevel[, pyramid[, withDerivatives[, pyrBorder[, derivBorder[, tryReuseInputImage]]]]]) -> retval, pyramid
+    
+    calcBackProject(...)
+        calcBackProject(images, channels, hist, ranges, scale[, dst]) -> dst
+    
+    calcCovarMatrix(...)
+        calcCovarMatrix(samples, flags[, covar[, mean[, ctype]]]) -> covar, mean
+    
+    calcGlobalOrientation(...)
+        calcGlobalOrientation(orientation, mask, mhi, timestamp, duration) -> retval
+    
+    calcHist(...)
+        calcHist(images, channels, mask, histSize, ranges[, hist[, accumulate]]) -> hist
+    
+    calcMotionGradient(...)
+        calcMotionGradient(mhi, delta1, delta2[, mask[, orientation[, apertureSize]]]) -> mask, orientation
+    
+    calcOpticalFlowFarneback(...)
+        calcOpticalFlowFarneback(prev, next, pyr_scale, levels, winsize, iterations, poly_n, poly_sigma, flags[, flow]) -> flow
+    
+    calcOpticalFlowPyrLK(...)
+        calcOpticalFlowPyrLK(prevImg, nextImg, prevPts[, nextPts[, status[, err[, winSize[, maxLevel[, criteria[, flags[, minEigThreshold]]]]]]]]) -> nextPts, status, err
+    
+    calcOpticalFlowSF(...)
+        calcOpticalFlowSF(from, to, flow, layers, averaging_block_size, max_flow) -> None  or  calcOpticalFlowSF(from, to, flow, layers, averaging_block_size, max_flow, sigma_dist, sigma_color, postprocess_window, sigma_dist_fix, sigma_color_fix, occ_thr, upscale_averaging_radius, upscale_sigma_dist, upscale_sigma_color, speed_up_thr) -> None
+    
+    calibrateCamera(...)
+        calibrateCamera(objectPoints, imagePoints, imageSize[, cameraMatrix[, distCoeffs[, rvecs[, tvecs[, flags[, criteria]]]]]]) -> retval, cameraMatrix, distCoeffs, rvecs, tvecs
+    
+    calibrationMatrixValues(...)
+        calibrationMatrixValues(cameraMatrix, imageSize, apertureWidth, apertureHeight) -> fovx, fovy, focalLength, principalPoint, aspectRatio
+    
+    cartToPolar(...)
+        cartToPolar(x, y[, magnitude[, angle[, angleInDegrees]]]) -> magnitude, angle
+    
+    chamerMatching(...)
+        chamerMatching(img, templ[, templScale[, maxMatches[, minMatchDistance[, padX[, padY[, scales[, minScale[, maxScale[, orientationWeight[, truncate]]]]]]]]]]) -> retval, results, cost
+    
+    checkHardwareSupport(...)
+        checkHardwareSupport(feature) -> retval
+    
+    checkRange(...)
+        checkRange(a[, quiet[, minVal[, maxVal]]]) -> retval, pos
+    
+    circle(...)
+        circle(img, center, radius, color[, thickness[, lineType[, shift]]]) -> None
+    
+    clipLine(...)
+        clipLine(imgRect, pt1, pt2) -> retval, pt1, pt2
+    
+    compare(...)
+        compare(src1, src2, cmpop[, dst]) -> dst
+    
+    compareHist(...)
+        compareHist(H1, H2, method) -> retval
+    
+    completeSymm(...)
+        completeSymm(mtx[, lowerToUpper]) -> None
+    
+    composeRT(...)
+        composeRT(rvec1, tvec1, rvec2, tvec2[, rvec3[, tvec3[, dr3dr1[, dr3dt1[, dr3dr2[, dr3dt2[, dt3dr1[, dt3dt1[, dt3dr2[, dt3dt2]]]]]]]]]]) -> rvec3, tvec3, dr3dr1, dr3dt1, dr3dr2, dr3dt2, dt3dr1, dt3dt1, dt3dr2, dt3dt2
+    
+    computeCorrespondEpilines(...)
+        computeCorrespondEpilines(points, whichImage, F[, lines]) -> lines
+    
+    contourArea(...)
+        contourArea(contour[, oriented]) -> retval
+    
+    convertMaps(...)
+        convertMaps(map1, map2, dstmap1type[, dstmap1[, dstmap2[, nninterpolation]]]) -> dstmap1, dstmap2
+    
+    convertPointsFromHomogeneous(...)
+        convertPointsFromHomogeneous(src[, dst]) -> dst
+    
+    convertPointsToHomogeneous(...)
+        convertPointsToHomogeneous(src[, dst]) -> dst
+    
+    convertScaleAbs(...)
+        convertScaleAbs(src[, dst[, alpha[, beta]]]) -> dst
+    
+    convexHull(...)
+        convexHull(points[, hull[, clockwise[, returnPoints]]]) -> hull
+    
+    convexityDefects(...)
+        convexityDefects(contour, convexhull[, convexityDefects]) -> convexityDefects
+    
+    copyMakeBorder(...)
+        copyMakeBorder(src, top, bottom, left, right, borderType[, dst[, value]]) -> dst
+    
+    cornerEigenValsAndVecs(...)
+        cornerEigenValsAndVecs(src, blockSize, ksize[, dst[, borderType]]) -> dst
+    
+    cornerHarris(...)
+        cornerHarris(src, blockSize, ksize, k[, dst[, borderType]]) -> dst
+    
+    cornerMinEigenVal(...)
+        cornerMinEigenVal(src, blockSize[, dst[, ksize[, borderType]]]) -> dst
+    
+    cornerSubPix(...)
+        cornerSubPix(image, corners, winSize, zeroZone, criteria) -> None
+    
+    correctMatches(...)
+        correctMatches(F, points1, points2[, newPoints1[, newPoints2]]) -> newPoints1, newPoints2
+    
+    countNonZero(...)
+        countNonZero(src) -> retval
+    
+    createCLAHE(...)
+        createCLAHE([, clipLimit[, tileGridSize]]) -> retval
+    
+    createEigenFaceRecognizer(...)
+        createEigenFaceRecognizer([, num_components[, threshold]]) -> retval
+    
+    createFisherFaceRecognizer(...)
+        createFisherFaceRecognizer([, num_components[, threshold]]) -> retval
+    
+    createHanningWindow(...)
+        createHanningWindow(winSize, type[, dst]) -> dst
+    
+    createLBPHFaceRecognizer(...)
+        createLBPHFaceRecognizer([, radius[, neighbors[, grid_x[, grid_y[, threshold]]]]]) -> retval
+    
+    createTrackbar(...)
+        createTrackbar(trackbarName, windowName, value, count, onChange) -> None
+    
+    cubeRoot(...)
+        cubeRoot(val) -> retval
+    
+    cvtColor(...)
+        cvtColor(src, code[, dst[, dstCn]]) -> dst
+    
+    dct(...)
+        dct(src[, dst[, flags]]) -> dst
+    
+    decomposeProjectionMatrix(...)
+        decomposeProjectionMatrix(projMatrix[, cameraMatrix[, rotMatrix[, transVect[, rotMatrixX[, rotMatrixY[, rotMatrixZ[, eulerAngles]]]]]]]) -> cameraMatrix, rotMatrix, transVect, rotMatrixX, rotMatrixY, rotMatrixZ, eulerAngles
+    
+    destroyAllWindows(...)
+        destroyAllWindows() -> None
+    
+    destroyWindow(...)
+        destroyWindow(winname) -> None
+    
+    determinant(...)
+        determinant(mtx) -> retval
+    
+    dft(...)
+        dft(src[, dst[, flags[, nonzeroRows]]]) -> dst
+    
+    dilate(...)
+        dilate(src, kernel[, dst[, anchor[, iterations[, borderType[, borderValue]]]]]) -> dst
+    
+    distanceTransform(...)
+        distanceTransform(src, distanceType, maskSize[, dst]) -> dst
+    
+    distanceTransformWithLabels(...)
+        distanceTransformWithLabels(src, distanceType, maskSize[, dst[, labels[, labelType]]]) -> dst, labels
+    
+    divide(...)
+        divide(src1, src2[, dst[, scale[, dtype]]]) -> dst  or  divide(scale, src2[, dst[, dtype]]) -> dst
+    
+    drawChessboardCorners(...)
+        drawChessboardCorners(image, patternSize, corners, patternWasFound) -> None
+    
+    drawContours(...)
+        drawContours(image, contours, contourIdx, color[, thickness[, lineType[, hierarchy[, maxLevel[, offset]]]]]) -> None
+    
+    drawDataMatrixCodes(...)
+        drawDataMatrixCodes(image, codes, corners) -> None
+    
+    drawKeypoints(...)
+        drawKeypoints(image, keypoints[, outImage[, color[, flags]]]) -> outImage
+    
+    eigen(...)
+        eigen(src, computeEigenvectors[, eigenvalues[, eigenvectors]]) -> retval, eigenvalues, eigenvectors
+    
+    ellipse(...)
+        ellipse(img, center, axes, angle, startAngle, endAngle, color[, thickness[, lineType[, shift]]]) -> None  or  ellipse(img, box, color[, thickness[, lineType]]) -> None
+    
+    ellipse2Poly(...)
+        ellipse2Poly(center, axes, angle, arcStart, arcEnd, delta) -> pts
+    
+    equalizeHist(...)
+        equalizeHist(src[, dst]) -> dst
+    
+    erode(...)
+        erode(src, kernel[, dst[, anchor[, iterations[, borderType[, borderValue]]]]]) -> dst
+    
+    estimateAffine3D(...)
+        estimateAffine3D(src, dst[, out[, inliers[, ransacThreshold[, confidence]]]]) -> retval, out, inliers
+    
+    estimateRigidTransform(...)
+        estimateRigidTransform(src, dst, fullAffine) -> retval
+    
+    exp(...)
+        exp(src[, dst]) -> dst
+    
+    extractChannel(...)
+        extractChannel(src, coi[, dst]) -> dst
+    
+    fastAtan2(...)
+        fastAtan2(y, x) -> retval
+    
+    fastNlMeansDenoising(...)
+        fastNlMeansDenoising(src[, dst[, h[, templateWindowSize[, searchWindowSize]]]]) -> dst
+    
+    fastNlMeansDenoisingColored(...)
+        fastNlMeansDenoisingColored(src[, dst[, h[, hColor[, templateWindowSize[, searchWindowSize]]]]]) -> dst
+    
+    fastNlMeansDenoisingColoredMulti(...)
+        fastNlMeansDenoisingColoredMulti(srcImgs, imgToDenoiseIndex, temporalWindowSize[, dst[, h[, hColor[, templateWindowSize[, searchWindowSize]]]]]) -> dst
+    
+    fastNlMeansDenoisingMulti(...)
+        fastNlMeansDenoisingMulti(srcImgs, imgToDenoiseIndex, temporalWindowSize[, dst[, h[, templateWindowSize[, searchWindowSize]]]]) -> dst
+    
+    fillConvexPoly(...)
+        fillConvexPoly(img, points, color[, lineType[, shift]]) -> None
+    
+    fillPoly(...)
+        fillPoly(img, pts, color[, lineType[, shift[, offset]]]) -> None
+    
+    filter2D(...)
+        filter2D(src, ddepth, kernel[, dst[, anchor[, delta[, borderType]]]]) -> dst
+    
+    filterSpeckles(...)
+        filterSpeckles(img, newVal, maxSpeckleSize, maxDiff[, buf]) -> None
+    
+    findChessboardCorners(...)
+        findChessboardCorners(image, patternSize[, corners[, flags]]) -> retval, corners
+    
+    findCirclesGrid(...)
+        findCirclesGrid(image, patternSize[, centers[, flags[, blobDetector]]]) -> retval, centers
+    
+    findCirclesGridDefault(...)
+        findCirclesGridDefault(image, patternSize[, centers[, flags]]) -> retval, centers
+    
+    findContours(...)
+        findContours(image, mode, method[, contours[, hierarchy[, offset]]]) -> contours, hierarchy
+    
+    findDataMatrix(...)
+        findDataMatrix(image[, corners[, dmtx]]) -> codes, corners, dmtx
+    
+    findFundamentalMat(...)
+        findFundamentalMat(points1, points2[, method[, param1[, param2[, mask]]]]) -> retval, mask
+    
+    findHomography(...)
+        findHomography(srcPoints, dstPoints[, method[, ransacReprojThreshold[, mask]]]) -> retval, mask
+    
+    findNonZero(...)
+        findNonZero(src[, idx]) -> idx
+    
+    fitEllipse(...)
+        fitEllipse(points) -> retval
+    
+    fitLine(...)
+        fitLine(points, distType, param, reps, aeps[, line]) -> line
+    
+    flann_Index(...)
+        flann_Index([features, params[, distType]]) -> <flann_Index object>
+    
+    flip(...)
+        flip(src, flipCode[, dst]) -> dst
+    
+    floodFill(...)
+        floodFill(image, mask, seedPoint, newVal[, loDiff[, upDiff[, flags]]]) -> retval, rect
+    
+    gemm(...)
+        gemm(src1, src2, alpha, src3, beta[, dst[, flags]]) -> dst
+    
+    getAffineTransform(...)
+        getAffineTransform(src, dst) -> retval
+    
+    getBuildInformation(...)
+        getBuildInformation() -> retval
+    
+    getCPUTickCount(...)
+        getCPUTickCount() -> retval
+    
+    getDefaultNewCameraMatrix(...)
+        getDefaultNewCameraMatrix(cameraMatrix[, imgsize[, centerPrincipalPoint]]) -> retval
+    
+    getDerivKernels(...)
+        getDerivKernels(dx, dy, ksize[, kx[, ky[, normalize[, ktype]]]]) -> kx, ky
+    
+    getGaborKernel(...)
+        getGaborKernel(ksize, sigma, theta, lambd, gamma[, psi[, ktype]]) -> retval
+    
+    getGaussianKernel(...)
+        getGaussianKernel(ksize, sigma[, ktype]) -> retval
+    
+    getNumThreads(...)
+        getNumThreads() -> retval
+    
+    getNumberOfCPUs(...)
+        getNumberOfCPUs() -> retval
+    
+    getOptimalDFTSize(...)
+        getOptimalDFTSize(vecsize) -> retval
+    
+    getOptimalNewCameraMatrix(...)
+        getOptimalNewCameraMatrix(cameraMatrix, distCoeffs, imageSize, alpha[, newImgSize[, centerPrincipalPoint]]) -> retval, validPixROI
+    
+    getPerspectiveTransform(...)
+        getPerspectiveTransform(src, dst) -> retval
+    
+    getRectSubPix(...)
+        getRectSubPix(image, patchSize, center[, patch[, patchType]]) -> patch
+    
+    getRotationMatrix2D(...)
+        getRotationMatrix2D(center, angle, scale) -> retval
+    
+    getStructuringElement(...)
+        getStructuringElement(shape, ksize[, anchor]) -> retval
+    
+    getTextSize(...)
+        getTextSize(text, fontFace, fontScale, thickness) -> retval, baseLine
+    
+    getThreadNum(...)
+        getThreadNum() -> retval
+    
+    getTickCount(...)
+        getTickCount() -> retval
+    
+    getTickFrequency(...)
+        getTickFrequency() -> retval
+    
+    getTrackbarPos(...)
+        getTrackbarPos(trackbarname, winname) -> retval
+    
+    getValidDisparityROI(...)
+        getValidDisparityROI(roi1, roi2, minDisparity, numberOfDisparities, SADWindowSize) -> retval
+    
+    getWindowProperty(...)
+        getWindowProperty(winname, prop_id) -> retval
+    
+    goodFeaturesToTrack(...)
+        goodFeaturesToTrack(image, maxCorners, qualityLevel, minDistance[, corners[, mask[, blockSize[, useHarrisDetector[, k]]]]]) -> corners
+    
+    grabCut(...)
+        grabCut(img, mask, rect, bgdModel, fgdModel, iterCount[, mode]) -> None
+    
+    groupRectangles(...)
+        groupRectangles(rectList, groupThreshold[, eps]) -> rectList, weights
+    
+    hconcat(...)
+        hconcat(src[, dst]) -> dst
+    
+    idct(...)
+        idct(src[, dst[, flags]]) -> dst
+    
+    idft(...)
+        idft(src[, dst[, flags[, nonzeroRows]]]) -> dst
+    
+    imdecode(...)
+        imdecode(buf, flags) -> retval
+    
+    imencode(...)
+        imencode(ext, img[, params]) -> retval, buf
+    
+    imread(...)
+        imread(filename[, flags]) -> retval
+    
+    imshow(...)
+        imshow(winname, mat) -> None
+    
+    imwrite(...)
+        imwrite(filename, img[, params]) -> retval
+    
+    inRange(...)
+        inRange(src, lowerb, upperb[, dst]) -> dst
+    
+    initCameraMatrix2D(...)
+        initCameraMatrix2D(objectPoints, imagePoints, imageSize[, aspectRatio]) -> retval
+    
+    initModule_nonfree(...)
+        initModule_nonfree() -> retval
+    
+    initUndistortRectifyMap(...)
+        initUndistortRectifyMap(cameraMatrix, distCoeffs, R, newCameraMatrix, size, m1type[, map1[, map2]]) -> map1, map2
+    
+    initWideAngleProjMap(...)
+        initWideAngleProjMap(cameraMatrix, distCoeffs, imageSize, destImageWidth, m1type[, map1[, map2[, projType[, alpha]]]]) -> retval, map1, map2
+    
+    inpaint(...)
+        inpaint(src, inpaintMask, inpaintRadius, flags[, dst]) -> dst
+    
+    insertChannel(...)
+        insertChannel(src, dst, coi) -> None
+    
+    integral(...)
+        integral(src[, sum[, sdepth]]) -> sum
+    
+    integral2(...)
+        integral2(src[, sum[, sqsum[, sdepth]]]) -> sum, sqsum
+    
+    integral3(...)
+        integral3(src[, sum[, sqsum[, tilted[, sdepth]]]]) -> sum, sqsum, tilted
+    
+    intersectConvexConvex(...)
+        intersectConvexConvex(_p1, _p2[, _p12[, handleNested]]) -> retval, _p12
+    
+    invert(...)
+        invert(src[, dst[, flags]]) -> retval, dst
+    
+    invertAffineTransform(...)
+        invertAffineTransform(M[, iM]) -> iM
+    
+    isContourConvex(...)
+        isContourConvex(contour) -> retval
+    
+    kmeans(...)
+        kmeans(data, K, criteria, attempts, flags[, bestLabels[, centers]]) -> retval, bestLabels, centers
+    
+    line(...)
+        line(img, pt1, pt2, color[, thickness[, lineType[, shift]]]) -> None
+    
+    log(...)
+        log(src[, dst]) -> dst
+    
+    magnitude(...)
+        magnitude(x, y[, magnitude]) -> magnitude
+    
+    matMulDeriv(...)
+        matMulDeriv(A, B[, dABdA[, dABdB]]) -> dABdA, dABdB
+    
+    matchShapes(...)
+        matchShapes(contour1, contour2, method, parameter) -> retval
+    
+    matchTemplate(...)
+        matchTemplate(image, templ, method[, result]) -> result
+    
+    max(...)
+        max(src1, src2[, dst]) -> dst
+    
+    mean(...)
+        mean(src[, mask]) -> retval
+    
+    meanShift(...)
+        meanShift(probImage, window, criteria) -> retval, window
+    
+    meanStdDev(...)
+        meanStdDev(src[, mean[, stddev[, mask]]]) -> mean, stddev
+    
+    medianBlur(...)
+        medianBlur(src, ksize[, dst]) -> dst
+    
+    merge(...)
+        merge(mv[, dst]) -> dst
+    
+    min(...)
+        min(src1, src2[, dst]) -> dst
+    
+    minAreaRect(...)
+        minAreaRect(points) -> retval
+    
+    minEnclosingCircle(...)
+        minEnclosingCircle(points) -> center, radius
+    
+    minMaxLoc(...)
+        minMaxLoc(src[, mask]) -> minVal, maxVal, minLoc, maxLoc
+    
+    mixChannels(...)
+        mixChannels(src, dst, fromTo) -> None
+    
+    moments(...)
+        moments(array[, binaryImage]) -> retval
+    
+    morphologyEx(...)
+        morphologyEx(src, op, kernel[, dst[, anchor[, iterations[, borderType[, borderValue]]]]]) -> dst
+    
+    moveWindow(...)
+        moveWindow(winname, x, y) -> None
+    
+    mulSpectrums(...)
+        mulSpectrums(a, b, flags[, c[, conjB]]) -> c
+    
+    mulTransposed(...)
+        mulTransposed(src, aTa[, dst[, delta[, scale[, dtype]]]]) -> dst
+    
+    multiply(...)
+        multiply(src1, src2[, dst[, scale[, dtype]]]) -> dst
+    
+    namedWindow(...)
+        namedWindow(winname[, flags]) -> None
+    
+    norm(...)
+        norm(src1[, normType[, mask]]) -> retval  or  norm(src1, src2[, normType[, mask]]) -> retval
+    
+    normalize(...)
+        normalize(src[, dst[, alpha[, beta[, norm_type[, dtype[, mask]]]]]]) -> dst
+    
+    patchNaNs(...)
+        patchNaNs(a[, val]) -> None
+    
+    perspectiveTransform(...)
+        perspectiveTransform(src, m[, dst]) -> dst
+    
+    phase(...)
+        phase(x, y[, angle[, angleInDegrees]]) -> angle
+    
+    phaseCorrelate(...)
+        phaseCorrelate(src1, src2[, window]) -> retval
+    
+    phaseCorrelateRes(...)
+        phaseCorrelateRes(src1, src2, window) -> retval, response
+    
+    pointPolygonTest(...)
+        pointPolygonTest(contour, pt, measureDist) -> retval
+    
+    polarToCart(...)
+        polarToCart(magnitude, angle[, x[, y[, angleInDegrees]]]) -> x, y
+    
+    polylines(...)
+        polylines(img, pts, isClosed, color[, thickness[, lineType[, shift]]]) -> None
+    
+    pow(...)
+        pow(src, power[, dst]) -> dst
+    
+    preCornerDetect(...)
+        preCornerDetect(src, ksize[, dst[, borderType]]) -> dst
+    
+    projectPoints(...)
+        projectPoints(objectPoints, rvec, tvec, cameraMatrix, distCoeffs[, imagePoints[, jacobian[, aspectRatio]]]) -> imagePoints, jacobian
+    
+    putText(...)
+        putText(img, text, org, fontFace, fontScale, color[, thickness[, lineType[, bottomLeftOrigin]]]) -> None
+    
+    pyrDown(...)
+        pyrDown(src[, dst[, dstsize[, borderType]]]) -> dst
+    
+    pyrMeanShiftFiltering(...)
+        pyrMeanShiftFiltering(src, sp, sr[, dst[, maxLevel[, termcrit]]]) -> dst
+    
+    pyrUp(...)
+        pyrUp(src[, dst[, dstsize[, borderType]]]) -> dst
+    
+    randShuffle(...)
+        randShuffle(dst[, iterFactor]) -> None
+    
+    randn(...)
+        randn(dst, mean, stddev) -> None
+    
+    randu(...)
+        randu(dst, low, high) -> None
+    
+    rectangle(...)
+        rectangle(img, pt1, pt2, color[, thickness[, lineType[, shift]]]) -> None
+    
+    rectify3Collinear(...)
+        rectify3Collinear(cameraMatrix1, distCoeffs1, cameraMatrix2, distCoeffs2, cameraMatrix3, distCoeffs3, imgpt1, imgpt3, imageSize, R12, T12, R13, T13, alpha, newImgSize, flags[, R1[, R2[, R3[, P1[, P2[, P3[, Q]]]]]]]) -> retval, R1, R2, R3, P1, P2, P3, Q, roi1, roi2
+    
+    reduce(...)
+        reduce(src, dim, rtype[, dst[, dtype]]) -> dst
+    
+    remap(...)
+        remap(src, map1, map2, interpolation[, dst[, borderMode[, borderValue]]]) -> dst
+    
+    repeat(...)
+        repeat(src, ny, nx[, dst]) -> dst
+    
+    reprojectImageTo3D(...)
+        reprojectImageTo3D(disparity, Q[, _3dImage[, handleMissingValues[, ddepth]]]) -> _3dImage
+    
+    resize(...)
+        resize(src, dsize[, dst[, fx[, fy[, interpolation]]]]) -> dst
+    
+    resizeWindow(...)
+        resizeWindow(winname, width, height) -> None
+    
+    scaleAdd(...)
+        scaleAdd(src1, alpha, src2[, dst]) -> dst
+    
+    segmentMotion(...)
+        segmentMotion(mhi, timestamp, segThresh[, segmask]) -> segmask, boundingRects
+    
+    sepFilter2D(...)
+        sepFilter2D(src, ddepth, kernelX, kernelY[, dst[, anchor[, delta[, borderType]]]]) -> dst
+    
+    setIdentity(...)
+        setIdentity(mtx[, s]) -> None
+    
+    setMouseCallback(...)
+        setMouseCallback(windowName, onMouse [, param]) -> None
+    
+    setNumThreads(...)
+        setNumThreads(nthreads) -> None
+    
+    setTrackbarPos(...)
+        setTrackbarPos(trackbarname, winname, pos) -> None
+    
+    setUseOptimized(...)
+        setUseOptimized(onoff) -> None
+    
+    setWindowProperty(...)
+        setWindowProperty(winname, prop_id, prop_value) -> None
+    
+    solve(...)
+        solve(src1, src2[, dst[, flags]]) -> retval, dst
+    
+    solveCubic(...)
+        solveCubic(coeffs[, roots]) -> retval, roots
+    
+    solvePnP(...)
+        solvePnP(objectPoints, imagePoints, cameraMatrix, distCoeffs[, rvec[, tvec[, useExtrinsicGuess[, flags]]]]) -> retval, rvec, tvec
+    
+    solvePnPRansac(...)
+        solvePnPRansac(objectPoints, imagePoints, cameraMatrix, distCoeffs[, rvec[, tvec[, useExtrinsicGuess[, iterationsCount[, reprojectionError[, minInliersCount[, inliers[, flags]]]]]]]]) -> rvec, tvec, inliers
+    
+    solvePoly(...)
+        solvePoly(coeffs[, roots[, maxIters]]) -> retval, roots
+    
+    sort(...)
+        sort(src, flags[, dst]) -> dst
+    
+    sortIdx(...)
+        sortIdx(src, flags[, dst]) -> dst
+    
+    split(...)
+        split(m[, mv]) -> mv
+    
+    sqrt(...)
+        sqrt(src[, dst]) -> dst
+    
+    startWindowThread(...)
+        startWindowThread() -> retval
+    
+    stereoCalibrate(...)
+        stereoCalibrate(objectPoints, imagePoints1, imagePoints2, imageSize[, cameraMatrix1[, distCoeffs1[, cameraMatrix2[, distCoeffs2[, R[, T[, E[, F[, criteria[, flags]]]]]]]]]]) -> retval, cameraMatrix1, distCoeffs1, cameraMatrix2, distCoeffs2, R, T, E, F
+    
+    stereoRectify(...)
+        stereoRectify(cameraMatrix1, distCoeffs1, cameraMatrix2, distCoeffs2, imageSize, R, T[, R1[, R2[, P1[, P2[, Q[, flags[, alpha[, newImageSize]]]]]]]]) -> R1, R2, P1, P2, Q, validPixROI1, validPixROI2
+    
+    stereoRectifyUncalibrated(...)
+        stereoRectifyUncalibrated(points1, points2, F, imgSize[, H1[, H2[, threshold]]]) -> retval, H1, H2
+    
+    subtract(...)
+        subtract(src1, src2[, dst[, mask[, dtype]]]) -> dst
+    
+    sumElems(...)
+        sumElems(src) -> retval
+    
+    threshold(...)
+        threshold(src, thresh, maxval, type[, dst]) -> retval, dst
+    
+    trace(...)
+        trace(mtx) -> retval
+    
+    transform(...)
+        transform(src, m[, dst]) -> dst
+    
+    transpose(...)
+        transpose(src[, dst]) -> dst
+    
+    triangulatePoints(...)
+        triangulatePoints(projMatr1, projMatr2, projPoints1, projPoints2[, points4D]) -> points4D
+    
+    undistort(...)
+        undistort(src, cameraMatrix, distCoeffs[, dst[, newCameraMatrix]]) -> dst
+    
+    undistortPoints(...)
+        undistortPoints(src, cameraMatrix, distCoeffs[, dst[, R[, P]]]) -> dst
+    
+    updateMotionHistory(...)
+        updateMotionHistory(silhouette, mhi, timestamp, duration) -> None
+    
+    useOptimized(...)
+        useOptimized() -> retval
+    
+    validateDisparity(...)
+        validateDisparity(disparity, cost, minDisparity, numberOfDisparities[, disp12MaxDisp]) -> None
+    
+    vconcat(...)
+        vconcat(src[, dst]) -> dst
+    
+    waitKey(...)
+        waitKey([, delay]) -> retval
+    
+    warpAffine(...)
+        warpAffine(src, M, dsize[, dst[, flags[, borderMode[, borderValue]]]]) -> dst
+    
+    warpPerspective(...)
+        warpPerspective(src, M, dsize[, dst[, flags[, borderMode[, borderValue]]]]) -> dst
+    
+    watershed(...)
+        watershed(image, markers) -> None
+
+DATA
+    ADAPTIVE_SKIN_DETECTOR_MORPHING_METHOD_ERODE = 1L
+    ADAPTIVE_SKIN_DETECTOR_MORPHING_METHOD_ERODE_DILATE = 3L
+    ADAPTIVE_SKIN_DETECTOR_MORPHING_METHOD_ERODE_ERODE = 2L
+    ADAPTIVE_SKIN_DETECTOR_MORPHING_METHOD_NONE = 0L
+    ADAPTIVE_THRESH_GAUSSIAN_C = 1L
+    ADAPTIVE_THRESH_MEAN_C = 0L
+    ANN_MLP_GAUSSIAN = 2L
+    ANN_MLP_IDENTITY = 0L
+    ANN_MLP_NO_INPUT_SCALE = 2L
+    ANN_MLP_NO_OUTPUT_SCALE = 4L
+    ANN_MLP_SIGMOID_SYM = 1L
+    ANN_MLP_TRAIN_PARAMS_BACKPROP = 0L
+    ANN_MLP_TRAIN_PARAMS_RPROP = 1L
+    ANN_MLP_UPDATE_WEIGHTS = 1L
+    BOOST_DEFAULT = 0L
+    BOOST_DISCRETE = 0L
+    BOOST_GENTLE = 3L
+    BOOST_GINI = 1L
+    BOOST_LOGIT = 2L
+    BOOST_MISCLASS = 3L
+    BOOST_REAL = 1L
+    BOOST_SQERR = 4L
+    BORDER_CONSTANT = 0L
+    BORDER_DEFAULT = 4L
+    BORDER_ISOLATED = 16L
+    BORDER_REFLECT = 2L
+    BORDER_REFLECT101 = 4L
+    BORDER_REFLECT_101 = 4L
+    BORDER_REPLICATE = 1L
+    BORDER_TRANSPARENT = 5L
+    BORDER_WRAP = 3L
+    CALIB_CB_ADAPTIVE_THRESH = 1L
+    CALIB_CB_ASYMMETRIC_GRID = 2L
+    CALIB_CB_CLUSTERING = 4L
+    CALIB_CB_FAST_CHECK = 8L
+    CALIB_CB_FILTER_QUADS = 4L
+    CALIB_CB_NORMALIZE_IMAGE = 2L
+    CALIB_CB_SYMMETRIC_GRID = 1L
+    CALIB_FIX_ASPECT_RATIO = 2L
+    CALIB_FIX_FOCAL_LENGTH = 16L
+    CALIB_FIX_INTRINSIC = 256L
+    CALIB_FIX_K1 = 32L
+    CALIB_FIX_K2 = 64L
+    CALIB_FIX_K3 = 128L
+    CALIB_FIX_K4 = 2048L
+    CALIB_FIX_K5 = 4096L
+    CALIB_FIX_K6 = 8192L
+    CALIB_FIX_PRINCIPAL_POINT = 4L
+    CALIB_RATIONAL_MODEL = 16384L
+    CALIB_SAME_FOCAL_LENGTH = 512L
+    CALIB_USE_INTRINSIC_GUESS = 1L
+    CALIB_ZERO_DISPARITY = 1024L
+    CALIB_ZERO_TANGENT_DIST = 8L
+    CASCADE_DO_CANNY_PRUNING = 1L
+    CASCADE_DO_ROUGH_SEARCH = 8L
+    CASCADE_FIND_BIGGEST_OBJECT = 4L
+    CASCADE_SCALE_IMAGE = 2L
+    CHAIN_APPROX_NONE = 1L
+    CHAIN_APPROX_SIMPLE = 2L
+    CHAIN_APPROX_TC89_KCOS = 4L
+    CHAIN_APPROX_TC89_L1 = 3L
+    CMP_EQ = 0L
+    CMP_GE = 2L
+    CMP_GT = 1L
+    CMP_LE = 4L
+    CMP_LT = 3L
+    CMP_NE = 5L
+    COLORMAP_AUTUMN = 0L
+    COLORMAP_BONE = 1L
+    COLORMAP_COOL = 8L
+    COLORMAP_HOT = 11L
+    COLORMAP_HSV = 9L
+    COLORMAP_JET = 2L
+    COLORMAP_OCEAN = 5L
+    COLORMAP_PINK = 10L
+    COLORMAP_RAINBOW = 4L
+    COLORMAP_SPRING = 7L
+    COLORMAP_SUMMER = 6L
+    COLORMAP_WINTER = 3L
+    COLOR_BAYER_BG2BGR = 46L
+    COLOR_BAYER_BG2BGR_VNG = 62L
+    COLOR_BAYER_BG2GRAY = 86L
+    COLOR_BAYER_BG2RGB = 48L
+    COLOR_BAYER_BG2RGB_VNG = 64L
+    COLOR_BAYER_GB2BGR = 47L
+    COLOR_BAYER_GB2BGR_VNG = 63L
+    COLOR_BAYER_GB2GRAY = 87L
+    COLOR_BAYER_GB2RGB = 49L
+    COLOR_BAYER_GB2RGB_VNG = 65L
+    COLOR_BAYER_GR2BGR = 49L
+    COLOR_BAYER_GR2BGR_VNG = 65L
+    COLOR_BAYER_GR2GRAY = 89L
+    COLOR_BAYER_GR2RGB = 47L
+    COLOR_BAYER_GR2RGB_VNG = 63L
+    COLOR_BAYER_RG2BGR = 48L
+    COLOR_BAYER_RG2BGR_VNG = 64L
+    COLOR_BAYER_RG2GRAY = 88L
+    COLOR_BAYER_RG2RGB = 46L
+    COLOR_BAYER_RG2RGB_VNG = 62L
+    COLOR_BGR2BGR555 = 22L
+    COLOR_BGR2BGR565 = 12L
+    COLOR_BGR2BGRA = 0L
+    COLOR_BGR2GRAY = 6L
+    COLOR_BGR2HLS = 52L
+    COLOR_BGR2HLS_FULL = 68L
+    COLOR_BGR2HSV = 40L
+    COLOR_BGR2HSV_FULL = 66L
+    COLOR_BGR2LAB = 44L
+    COLOR_BGR2LUV = 50L
+    COLOR_BGR2RGB = 4L
+    COLOR_BGR2RGBA = 2L
+    COLOR_BGR2XYZ = 32L
+    COLOR_BGR2YCR_CB = 36L
+    COLOR_BGR2YUV = 82L
+    COLOR_BGR2YUV_I420 = 128L
+    COLOR_BGR2YUV_IYUV = 128L
+    COLOR_BGR2YUV_YV12 = 132L
+    COLOR_BGR5552BGR = 24L
+    COLOR_BGR5552BGRA = 28L
+    COLOR_BGR5552GRAY = 31L
+    COLOR_BGR5552RGB = 25L
+    COLOR_BGR5552RGBA = 29L
+    COLOR_BGR5652BGR = 14L
+    COLOR_BGR5652BGRA = 18L
+    COLOR_BGR5652GRAY = 21L
+    COLOR_BGR5652RGB = 15L
+    COLOR_BGR5652RGBA = 19L
+    COLOR_BGRA2BGR = 1L
+    COLOR_BGRA2BGR555 = 26L
+    COLOR_BGRA2BGR565 = 16L
+    COLOR_BGRA2GRAY = 10L
+    COLOR_BGRA2RGB = 3L
+    COLOR_BGRA2RGBA = 5L
+    COLOR_BGRA2YUV_I420 = 130L
+    COLOR_BGRA2YUV_IYUV = 130L
+    COLOR_BGRA2YUV_YV12 = 134L
+    COLOR_COLORCVT_MAX = 135L
+    COLOR_GRAY2BGR = 8L
+    COLOR_GRAY2BGR555 = 30L
+    COLOR_GRAY2BGR565 = 20L
+    COLOR_GRAY2BGRA = 9L
+    COLOR_GRAY2RGB = 8L
+    COLOR_GRAY2RGBA = 9L
+    COLOR_HLS2BGR = 60L
+    COLOR_HLS2BGR_FULL = 72L
+    COLOR_HLS2RGB = 61L
+    COLOR_HLS2RGB_FULL = 73L
+    COLOR_HSV2BGR = 54L
+    COLOR_HSV2BGR_FULL = 70L
+    COLOR_HSV2RGB = 55L
+    COLOR_HSV2RGB_FULL = 71L
+    COLOR_LAB2BGR = 56L
+    COLOR_LAB2LBGR = 78L
+    COLOR_LAB2LRGB = 79L
+    COLOR_LAB2RGB = 57L
+    COLOR_LBGR2LAB = 74L
+    COLOR_LBGR2LUV = 76L
+    COLOR_LRGB2LAB = 75L
+    COLOR_LRGB2LUV = 77L
+    COLOR_LUV2BGR = 58L
+    COLOR_LUV2LBGR = 80L
+    COLOR_LUV2LRGB = 81L
+    COLOR_LUV2RGB = 59L
+    COLOR_M_RGBA2RGBA = 126L
+    COLOR_RGB2BGR = 4L
+    COLOR_RGB2BGR555 = 23L
+    COLOR_RGB2BGR565 = 13L
+    COLOR_RGB2BGRA = 2L
+    COLOR_RGB2GRAY = 7L
+    COLOR_RGB2HLS = 53L
+    COLOR_RGB2HLS_FULL = 69L
+    COLOR_RGB2HSV = 41L
+    COLOR_RGB2HSV_FULL = 67L
+    COLOR_RGB2LAB = 45L
+    COLOR_RGB2LUV = 51L
+    COLOR_RGB2RGBA = 0L
+    COLOR_RGB2XYZ = 33L
+    COLOR_RGB2YCR_CB = 37L
+    COLOR_RGB2YUV = 83L
+    COLOR_RGB2YUV_I420 = 127L
+    COLOR_RGB2YUV_IYUV = 127L
+    COLOR_RGB2YUV_YV12 = 131L
+    COLOR_RGBA2BGR = 3L
+    COLOR_RGBA2BGR555 = 27L
+    COLOR_RGBA2BGR565 = 17L
+    COLOR_RGBA2BGRA = 5L
+    COLOR_RGBA2GRAY = 11L
+    COLOR_RGBA2M_RGBA = 125L
+    COLOR_RGBA2RGB = 1L
+    COLOR_RGBA2YUV_I420 = 129L
+    COLOR_RGBA2YUV_IYUV = 129L
+    COLOR_RGBA2YUV_YV12 = 133L
+    COLOR_XYZ2BGR = 34L
+    COLOR_XYZ2RGB = 35L
+    COLOR_YCR_CB2BGR = 38L
+    COLOR_YCR_CB2RGB = 39L
+    COLOR_YUV2BGR = 84L
+    COLOR_YUV2BGRA_I420 = 105L
+    COLOR_YUV2BGRA_IYUV = 105L
+    COLOR_YUV2BGRA_NV12 = 95L
+    COLOR_YUV2BGRA_NV21 = 97L
+    COLOR_YUV2BGRA_UYNV = 112L
+    COLOR_YUV2BGRA_UYVY = 112L
+    COLOR_YUV2BGRA_Y422 = 112L
+    COLOR_YUV2BGRA_YUNV = 120L
+    COLOR_YUV2BGRA_YUY2 = 120L
+    COLOR_YUV2BGRA_YUYV = 120L
+    COLOR_YUV2BGRA_YV12 = 103L
+    COLOR_YUV2BGRA_YVYU = 122L
+    COLOR_YUV2BGR_I420 = 101L
+    COLOR_YUV2BGR_IYUV = 101L
+    COLOR_YUV2BGR_NV12 = 91L
+    COLOR_YUV2BGR_NV21 = 93L
+    COLOR_YUV2BGR_UYNV = 108L
+    COLOR_YUV2BGR_UYVY = 108L
+    COLOR_YUV2BGR_Y422 = 108L
+    COLOR_YUV2BGR_YUNV = 116L
+    COLOR_YUV2BGR_YUY2 = 116L
+    COLOR_YUV2BGR_YUYV = 116L
+    COLOR_YUV2BGR_YV12 = 99L
+    COLOR_YUV2BGR_YVYU = 118L
+    COLOR_YUV2GRAY_420 = 106L
+    COLOR_YUV2GRAY_I420 = 106L
+    COLOR_YUV2GRAY_IYUV = 106L
+    COLOR_YUV2GRAY_NV12 = 106L
+    COLOR_YUV2GRAY_NV21 = 106L
+    COLOR_YUV2GRAY_UYNV = 123L
+    COLOR_YUV2GRAY_UYVY = 123L
+    COLOR_YUV2GRAY_Y422 = 123L
+    COLOR_YUV2GRAY_YUNV = 124L
+    COLOR_YUV2GRAY_YUY2 = 124L
+    COLOR_YUV2GRAY_YUYV = 124L
+    COLOR_YUV2GRAY_YV12 = 106L
+    COLOR_YUV2GRAY_YVYU = 124L
+    COLOR_YUV2RGB = 85L
+    COLOR_YUV2RGBA_I420 = 104L
+    COLOR_YUV2RGBA_IYUV = 104L
+    COLOR_YUV2RGBA_NV12 = 94L
+    COLOR_YUV2RGBA_NV21 = 96L
+    COLOR_YUV2RGBA_UYNV = 111L
+    COLOR_YUV2RGBA_UYVY = 111L
+    COLOR_YUV2RGBA_Y422 = 111L
+    COLOR_YUV2RGBA_YUNV = 119L
+    COLOR_YUV2RGBA_YUY2 = 119L
+    COLOR_YUV2RGBA_YUYV = 119L
+    COLOR_YUV2RGBA_YV12 = 102L
+    COLOR_YUV2RGBA_YVYU = 121L
+    COLOR_YUV2RGB_I420 = 100L
+    COLOR_YUV2RGB_IYUV = 100L
+    COLOR_YUV2RGB_NV12 = 90L
+    COLOR_YUV2RGB_NV21 = 92L
+    COLOR_YUV2RGB_UYNV = 107L
+    COLOR_YUV2RGB_UYVY = 107L
+    COLOR_YUV2RGB_Y422 = 107L
+    COLOR_YUV2RGB_YUNV = 115L
+    COLOR_YUV2RGB_YUY2 = 115L
+    COLOR_YUV2RGB_YUYV = 115L
+    COLOR_YUV2RGB_YV12 = 98L
+    COLOR_YUV2RGB_YVYU = 117L
+    COLOR_YUV420P2BGR = 99L
+    COLOR_YUV420P2BGRA = 103L
+    COLOR_YUV420P2GRAY = 106L
+    COLOR_YUV420P2RGB = 98L
+    COLOR_YUV420P2RGBA = 102L
+    COLOR_YUV420SP2BGR = 93L
+    COLOR_YUV420SP2BGRA = 97L
+    COLOR_YUV420SP2GRAY = 106L
+    COLOR_YUV420SP2RGB = 92L
+    COLOR_YUV420SP2RGBA = 96L
+    COVAR_COLS = 16L
+    COVAR_NORMAL = 1L
+    COVAR_ROWS = 8L
+    COVAR_SCALE = 4L
+    COVAR_SCRAMBLED = 0L
+    COVAR_USE_AVG = 2L
+    CV_16S = 3
+    CV_16SC1 = 3
+    CV_16SC2 = 11
+    CV_16SC3 = 19
+    CV_16SC4 = 27
+    CV_16U = 2
+    CV_16UC1 = 2
+    CV_16UC2 = 10
+    CV_16UC3 = 18
+    CV_16UC4 = 26
+    CV_32F = 5
+    CV_32FC1 = 5
+    CV_32FC2 = 13
+    CV_32FC3 = 21
+    CV_32FC4 = 29
+    CV_32S = 4
+    CV_32SC1 = 4
+    CV_32SC2 = 12
+    CV_32SC3 = 20
+    CV_32SC4 = 28
+    CV_64F = 6
+    CV_64FC1 = 6
+    CV_64FC2 = 14
+    CV_64FC3 = 22
+    CV_64FC4 = 30
+    CV_8S = 1
+    CV_8SC1 = 1
+    CV_8SC2 = 9
+    CV_8SC3 = 17
+    CV_8SC4 = 25
+    CV_8U = 0
+    CV_8UC1 = 0
+    CV_8UC2 = 8
+    CV_8UC3 = 16
+    CV_8UC4 = 24
+    CV_AA = 16
+    CV_EPNP = 1L
+    CV_HIST_ARRAY = 0
+    CV_HIST_SPARSE = 1
+    CV_ITERATIVE = 0L
+    CV_LOAD_IMAGE_COLOR = 1
+    CV_LOAD_IMAGE_GRAYSCALE = 0
+    CV_LOAD_IMAGE_UNCHANGED = -1
+    CV_NEXT_AROUND_DST = 34
+    CV_NEXT_AROUND_LEFT = 19
+    CV_NEXT_AROUND_ORG = 0
+    CV_NEXT_AROUND_RIGHT = 49
+    CV_P3P = 2L
+    CV_PREV_AROUND_DST = 51
+    CV_PREV_AROUND_LEFT = 32
+    CV_PREV_AROUND_ORG = 17
+    CV_PREV_AROUND_RIGHT = 2
+    CV_PTLOC_INSIDE = 0
+    CV_PTLOC_ON_EDGE = 2
+    CV_PTLOC_OUTSIDE_RECT = -1
+    CV_PTLOC_VERTEX = 1
+    CV_ROW_SAMPLE = 1
+    CV_VAR_CATEGORICAL = 1
+    CV_VAR_NUMERICAL = 0
+    CV_VAR_ORDERED = 0
+    CV_WINDOW_AUTOSIZE = 1
+    DCT_INVERSE = 1L
+    DCT_ROWS = 4L
+    DECOMP_CHOLESKY = 3L
+    DECOMP_EIG = 2L
+    DECOMP_LU = 0L
+    DECOMP_NORMAL = 16L
+    DECOMP_QR = 4L
+    DECOMP_SVD = 1L
+    DEPTH_MASK = 7L
+    DEPTH_MASK_16S = 8L
+    DEPTH_MASK_16U = 4L
+    DEPTH_MASK_32F = 32L
+    DEPTH_MASK_32S = 16L
+    DEPTH_MASK_64F = 64L
+    DEPTH_MASK_8S = 2L
+    DEPTH_MASK_8U = 1L
+    DEPTH_MASK_ALL = 127L
+    DEPTH_MASK_ALL_BUT_8S = 125L
+    DEPTH_MASK_FLT = 96L
+    DFT_COMPLEX_OUTPUT = 16L
+    DFT_INVERSE = 1L
+    DFT_REAL_OUTPUT = 32L
+    DFT_ROWS = 4L
+    DFT_SCALE = 2L
+    DIST_LABEL_CCOMP = 0L
+    DIST_LABEL_PIXEL = 1L
+    DRAW_MATCHES_FLAGS_DEFAULT = 0L
+    DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG = 1L
+    DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS = 4L
+    DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS = 2L
+    EM_COV_MAT_DEFAULT = 1L
+    EM_COV_MAT_DIAGONAL = 1L
+    EM_COV_MAT_GENERIC = 2L
+    EM_COV_MAT_SPHERICAL = 0L
+    EM_DEFAULT_MAX_ITERS = 100L
+    EM_DEFAULT_NCLUSTERS = 5L
+    EM_START_AUTO_STEP = 0L
+    EM_START_E_STEP = 1L
+    EM_START_M_STEP = 2L
+    EPNP = 1L
+    EVENT_FLAG_ALTKEY = 32L
+    EVENT_FLAG_CTRLKEY = 8L
+    EVENT_FLAG_LBUTTON = 1L
+    EVENT_FLAG_MBUTTON = 4L
+    EVENT_FLAG_RBUTTON = 2L
+    EVENT_FLAG_SHIFTKEY = 16L
+    EVENT_LBUTTONDBLCLK = 7L
+    EVENT_LBUTTONDOWN = 1L
+    EVENT_LBUTTONUP = 4L
+    EVENT_MBUTTONDBLCLK = 9L
+    EVENT_MBUTTONDOWN = 3L
+    EVENT_MBUTTONUP = 6L
+    EVENT_MOUSEMOVE = 0L
+    EVENT_RBUTTONDBLCLK = 8L
+    EVENT_RBUTTONDOWN = 2L
+    EVENT_RBUTTONUP = 5L
+    FAST_FEATURE_DETECTOR_TYPE_5_8 = 0L
+    FAST_FEATURE_DETECTOR_TYPE_7_12 = 1L
+    FAST_FEATURE_DETECTOR_TYPE_9_16 = 2L
+    FEATURE_EVALUATOR_HAAR = 0L
+    FEATURE_EVALUATOR_HOG = 2L
+    FEATURE_EVALUATOR_LBP = 1L
+    FILE_NODE_EMPTY = 32L
+    FILE_NODE_FLOAT = 2L
+    FILE_NODE_FLOW = 8L
+    FILE_NODE_INT = 1L
+    FILE_NODE_MAP = 6L
+    FILE_NODE_NAMED = 64L
+    FILE_NODE_NONE = 0L
+    FILE_NODE_REAL = 2L
+    FILE_NODE_REF = 4L
+    FILE_NODE_SEQ = 5L
+    FILE_NODE_STR = 3L
+    FILE_NODE_STRING = 3L
+    FILE_NODE_TYPE_MASK = 7L
+    FILE_NODE_USER = 16L
+    FILE_STORAGE_APPEND = 2L
+    FILE_STORAGE_FORMAT_AUTO = 0L
+    FILE_STORAGE_FORMAT_MASK = 56L
+    FILE_STORAGE_FORMAT_XML = 8L
+    FILE_STORAGE_FORMAT_YAML = 16L
+    FILE_STORAGE_INSIDE_MAP = 4L
+    FILE_STORAGE_MEMORY = 4L
+    FILE_STORAGE_NAME_EXPECTED = 2L
+    FILE_STORAGE_READ = 0L
+    FILE_STORAGE_UNDEFINED = 0L
+    FILE_STORAGE_VALUE_EXPECTED = 1L
+    FILE_STORAGE_WRITE = 1L
+    FISHEYE_CALIB_CHECK_COND = 4L
+    FISHEYE_CALIB_FIX_INTRINSIC = 256L
+    FISHEYE_CALIB_FIX_K1 = 16L
+    FISHEYE_CALIB_FIX_K2 = 32L
+    FISHEYE_CALIB_FIX_K3 = 64L
+    FISHEYE_CALIB_FIX_K4 = 128L
+    FISHEYE_CALIB_FIX_SKEW = 8L
+    FISHEYE_CALIB_RECOMPUTE_EXTRINSIC = 2L
+    FISHEYE_CALIB_USE_INTRINSIC_GUESS = 1L
+    FLOODFILL_FIXED_RANGE = 65536L
+    FLOODFILL_MASK_ONLY = 131072L
+    FM_7POINT = 1L
+    FM_8POINT = 2L
+    FM_LMEDS = 4L
+    FM_RANSAC = 8L
+    FONT_HERSHEY_COMPLEX = 3L
+    FONT_HERSHEY_COMPLEX_SMALL = 5L
+    FONT_HERSHEY_DUPLEX = 2L
+    FONT_HERSHEY_PLAIN = 1L
+    FONT_HERSHEY_SCRIPT_COMPLEX = 7L
+    FONT_HERSHEY_SCRIPT_SIMPLEX = 6L
+    FONT_HERSHEY_SIMPLEX = 0L
+    FONT_HERSHEY_TRIPLEX = 4L
+    FONT_ITALIC = 16L
+    FREAK_NB_ORIENPAIRS = 45L
+    FREAK_NB_PAIRS = 512L
+    FREAK_NB_SCALES = 64L
+    FUZZY_MEAN_SHIFT_TRACKER_MIN_KERNEL_MASS = 1000L
+    FUZZY_MEAN_SHIFT_TRACKER_RM_EDGE_DENSITY_FUZZY = 1L
+    FUZZY_MEAN_SHIFT_TRACKER_RM_EDGE_DENSITY_LINEAR = 0L
+    FUZZY_MEAN_SHIFT_TRACKER_RM_INNER_DENSITY = 2L
+    FUZZY_MEAN_SHIFT_TRACKER_TS_DISABLED = 10L
+    FUZZY_MEAN_SHIFT_TRACKER_TS_NONE = 0L
+    FUZZY_MEAN_SHIFT_TRACKER_TS_SEARCHING = 1L
+    FUZZY_MEAN_SHIFT_TRACKER_TS_SET_WINDOW = 3L
+    FUZZY_MEAN_SHIFT_TRACKER_TS_TRACKING = 2L
+    GBTREES_ABSOLUTE_LOSS = 1L
+    GBTREES_DEVIANCE_LOSS = 4L
+    GBTREES_HUBER_LOSS = 3L
+    GBTREES_SQUARED_LOSS = 0L
+    GC_BGD = 0L
+    GC_EVAL = 2L
+    GC_FGD = 1L
+    GC_INIT_WITH_MASK = 1L
+    GC_INIT_WITH_RECT = 0L
+    GC_PR_BGD = 2L
+    GC_PR_FGD = 3L
+    GEMM_1_T = 1L
+    GEMM_2_T = 2L
+    GEMM_3_T = 4L
+    GHT_POSITION = 0L
+    GHT_ROTATION = 2L
+    GHT_SCALE = 1L
+    HAMMING_NORM_TYPE = 6L
+    HOGDESCRIPTOR_DEFAULT_NLEVELS = 64L
+    HOGDESCRIPTOR_L2HYS = 0L
+    IMREAD_ANYCOLOR = 4L
+    IMREAD_ANYDEPTH = 2L
+    IMREAD_COLOR = 1L
+    IMREAD_GRAYSCALE = 0L
+    IMREAD_UNCHANGED = -1L
+    IMWRITE_JPEG_QUALITY = 1L
+    IMWRITE_PNG_BILEVEL = 18L
+    IMWRITE_PNG_COMPRESSION = 16L
+    IMWRITE_PNG_STRATEGY = 17L
+    IMWRITE_PNG_STRATEGY_DEFAULT = 0L
+    IMWRITE_PNG_STRATEGY_FILTERED = 1L
+    IMWRITE_PNG_STRATEGY_FIXED = 4L
+    IMWRITE_PNG_STRATEGY_HUFFMAN_ONLY = 2L
+    IMWRITE_PNG_STRATEGY_RLE = 3L
+    IMWRITE_PXM_BINARY = 32L
+    INPAINT_NS = 0L
+    INPAINT_TELEA = 1L
+    INTER_AREA = 3L
+    INTER_BITS = 5L
+    INTER_BITS2 = 10L
+    INTER_CUBIC = 2L
+    INTER_LANCZOS4 = 4L
+    INTER_LINEAR = 1L
+    INTER_MAX = 7L
+    INTER_NEAREST = 0L
+    INTER_TAB_SIZE = 32L
+    INTER_TAB_SIZE2 = 1024L
+    IPL_DEPTH_16S = 2147483664L
+    IPL_DEPTH_16U = 16L
+    IPL_DEPTH_32F = 32L
+    IPL_DEPTH_32S = 2147483680L
+    IPL_DEPTH_64F = 64L
+    IPL_DEPTH_8S = 2147483656L
+    IPL_DEPTH_8U = 8L
+    ITERATIVE = 0L
+    KERNEL_ASYMMETRICAL = 2L
+    KERNEL_GENERAL = 0L
+    KERNEL_INTEGER = 8L
+    KERNEL_SMOOTH = 4L
+    KERNEL_SYMMETRICAL = 1L
+    KMEANS_PP_CENTERS = 2L
+    KMEANS_RANDOM_CENTERS = 0L
+    KMEANS_USE_INITIAL_LABELS = 1L
+    LEV_MARQ_CALC_J = 2L
+    LEV_MARQ_CHECK_ERR = 3L
+    LEV_MARQ_DONE = 0L
+    LEV_MARQ_STARTED = 1L
+    LMEDS = 4L
+    MAGIC_MASK = -65536L
+    MAT_AUTO_STEP = 0L
+    MAT_CONTINUOUS_FLAG = 16384L
+    MAT_MAGIC_VAL = 1124007936L
+    MAT_SUBMATRIX_FLAG = 32768L
+    MORPH_BLACKHAT = 6L
+    MORPH_CLOSE = 3L
+    MORPH_CROSS = 1L
+    MORPH_DILATE = 1L
+    MORPH_ELLIPSE = 2L
+    MORPH_ERODE = 0L
+    MORPH_GRADIENT = 4L
+    MORPH_OPEN = 2L
+    MORPH_RECT = 0L
+    MORPH_TOPHAT = 5L
+    NORM_HAMMING = 6L
+    NORM_HAMMING2 = 7L
+    NORM_INF = 1L
+    NORM_L1 = 2L
+    NORM_L2 = 4L
+    NORM_L2SQR = 5L
+    NORM_MINMAX = 32L
+    NORM_RELATIVE = 8L
+    NORM_TYPE_MASK = 7L
+    OPTFLOW_FARNEBACK_GAUSSIAN = 256L
+    OPTFLOW_LK_GET_MIN_EIGENVALS = 8L
+    OPTFLOW_USE_INITIAL_FLOW = 4L
+    ORB_FAST_SCORE = 1L
+    ORB_HARRIS_SCORE = 0L
+    ORB_K_BYTES = 32L
+    P3P = 2L
+    PARAM_ALGORITHM = 6L
+    PARAM_BOOLEAN = 1L
+    PARAM_FLOAT = 7L
+    PARAM_GRID_SVM_C = 0L
+    PARAM_GRID_SVM_COEF = 4L
+    PARAM_GRID_SVM_DEGREE = 5L
+    PARAM_GRID_SVM_GAMMA = 1L
+    PARAM_GRID_SVM_NU = 3L
+    PARAM_GRID_SVM_P = 2L
+    PARAM_INT = 0L
+    PARAM_MAT = 4L
+    PARAM_MAT_VECTOR = 5L
+    PARAM_REAL = 2L
+    PARAM_SHORT = 10L
+    PARAM_STRING = 3L
+    PARAM_UCHAR = 11L
+    PARAM_UINT64 = 9L
+    PARAM_UNSIGNED_INT = 8L
+    PROJ_SPHERICAL_EQRECT = 1L
+    PROJ_SPHERICAL_ORTHO = 0L
+    RANSAC = 8L
+    RETR_CCOMP = 2L
+    RETR_EXTERNAL = 0L
+    RETR_FLOODFILL = 4L
+    RETR_LIST = 1L
+    RETR_TREE = 3L
+    RIGID_BODY_MOTION = 4L
+    RNG_NORMAL = 1L
+    RNG_UNIFORM = 0L
+    ROTATION = 1L
+    SELF_SIM_DESCRIPTOR_DEFAULT_LARGE_SIZE = 41L
+    SELF_SIM_DESCRIPTOR_DEFAULT_NUM_ANGLES = 20L
+    SELF_SIM_DESCRIPTOR_DEFAULT_NUM_DISTANCE_BUCKETS = 7L
+    SELF_SIM_DESCRIPTOR_DEFAULT_SMALL_SIZE = 5L
+    SELF_SIM_DESCRIPTOR_DEFAULT_START_DISTANCE_BUCKET = 3L
+    SORT_ASCENDING = 0L
+    SORT_DESCENDING = 16L
+    SORT_EVERY_COLUMN = 1L
+    SORT_EVERY_ROW = 0L
+    SPARSE_MAT_HASH_BIT = -2147483648L
+    SPARSE_MAT_HASH_SCALE = 1540483477L
+    SPARSE_MAT_MAGIC_VAL = 1123876864L
+    SPARSE_MAT_MAX_DIM = 32L
+    STEREO_BM_BASIC_PRESET = 0L
+    STEREO_BM_FISH_EYE_PRESET = 1L
+    STEREO_BM_NARROW_PRESET = 2L
+    STEREO_BM_PREFILTER_NORMALIZED_RESPONSE = 0L
+    STEREO_BM_PREFILTER_XSOBEL = 1L
+    STEREO_SGBM_DISP_SCALE = 16L
+    STEREO_SGBM_DISP_SHIFT = 4L
+    STEREO_VAR_CYCLE_O = 0L
+    STEREO_VAR_CYCLE_V = 1L
+    STEREO_VAR_PENALIZATION_CHARBONNIER = 1L
+    STEREO_VAR_PENALIZATION_PERONA_MALIK = 2L
+    STEREO_VAR_PENALIZATION_TICHONOV = 0L
+    STEREO_VAR_USE_AUTO_PARAMS = 8L
+    STEREO_VAR_USE_EQUALIZE_HIST = 2L
+    STEREO_VAR_USE_INITIAL_DISPARITY = 1L
+    STEREO_VAR_USE_MEDIAN_FILTERING = 16L
+    STEREO_VAR_USE_SMART_ID = 4L
+    SUBDIV2D_NEXT_AROUND_DST = 34L
+    SUBDIV2D_NEXT_AROUND_LEFT = 19L
+    SUBDIV2D_NEXT_AROUND_ORG = 0L
+    SUBDIV2D_NEXT_AROUND_RIGHT = 49L
+    SUBDIV2D_PREV_AROUND_DST = 51L
+    SUBDIV2D_PREV_AROUND_LEFT = 32L
+    SUBDIV2D_PREV_AROUND_ORG = 17L
+    SUBDIV2D_PREV_AROUND_RIGHT = 2L
+    SUBDIV2D_PTLOC_ERROR = -2L
+    SUBDIV2D_PTLOC_INSIDE = 0L
+    SUBDIV2D_PTLOC_ON_EDGE = 2L
+    SUBDIV2D_PTLOC_OUTSIDE_RECT = -1L
+    SUBDIV2D_PTLOC_VERTEX = 1L
+    SVD_FULL_UV = 4L
+    SVD_MODIFY_A = 1L
+    SVD_NO_UV = 2L
+    SVM_C = 0L
+    SVM_COEF = 4L
+    SVM_C_SVC = 100L
+    SVM_DEGREE = 5L
+    SVM_EPS_SVR = 103L
+    SVM_GAMMA = 1L
+    SVM_LINEAR = 0L
+    SVM_NU = 3L
+    SVM_NU_SVC = 101L
+    SVM_NU_SVR = 104L
+    SVM_ONE_CLASS = 102L
+    SVM_P = 2L
+    SVM_POLY = 1L
+    SVM_RBF = 2L
+    SVM_SIGMOID = 3L
+    TERM_CRITERIA_COUNT = 1L
+    TERM_CRITERIA_EPS = 2L
+    TERM_CRITERIA_MAX_ITER = 1L
+    THRESH_BINARY = 0L
+    THRESH_BINARY_INV = 1L
+    THRESH_MASK = 7L
+    THRESH_OTSU = 8L
+    THRESH_TOZERO = 3L
+    THRESH_TOZERO_INV = 4L
+    THRESH_TRUNC = 2L
+    TM_CCOEFF = 4L
+    TM_CCOEFF_NORMED = 5L
+    TM_CCORR = 2L
+    TM_CCORR_NORMED = 3L
+    TM_SQDIFF = 0L
+    TM_SQDIFF_NORMED = 1L
+    TRANSLATION = 2L
+    TYPE_MASK = 4095L
+    WARP_INVERSE_MAP = 16L
+    WINDOW_AUTOSIZE = 1L
+    WINDOW_NORMAL = 0L
+    WINDOW_OPENGL = 4096L
+    WND_PROP_ASPECT_RATIO = 2L
+    WND_PROP_AUTOSIZE = 1L
+    WND_PROP_FULLSCREEN = 0L
+    WND_PROP_OPENGL = 3L
+    __version__ = '2.4.11'
+
+VERSION
+    2.4.11
+
+
+None
+2.4.11
+[Finished in 0.3s]
