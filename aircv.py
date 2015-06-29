@@ -146,7 +146,11 @@ def find_all_template(im_source, im_search, threshold=0.5, maxcnt=0, rgb=False, 
             break
         # calculator middle point
         middle_point = (top_left[0]+w/2, top_left[1]+h/2)
-        result.append((middle_point, max_val))
+        result.append(dict(
+            result=middle_point,
+            rectangle=(top_left, (top_left[0], top_left[1] + h), (top_left[0] + w, top_left[1]), (top_left[0] + w, top_left[1] + h)),
+            confidence=max_val
+        ))
         if maxcnt and len(result) >= maxcnt:
             break
         # floodfill the already found area
@@ -162,17 +166,17 @@ def sift_count(img):
     kp, des = sift.detectAndCompute(img, None)
     return len(kp)
 
-def find_sift(im_source, im_search, min_match_count=10):
+def find_sift(im_source, im_search, min_match_count=4):
     '''
     SIFT特征点匹配
     '''
     res = find_all_sift(im_source, im_search, min_match_count, maxcnt=1)
-    if len(res) == 0:
+    if not res:
         return None
     return res[0]
     
 
-def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
+def find_all_sift(im_source, im_search, min_match_count=4, maxcnt=0):
     '''
     使用sift算法进行多个相同元素的查找
     Args:
@@ -198,10 +202,12 @@ def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
 
     result = []
     while True:
+        # 匹配两个图片中的特征点，k=2表示每个特征点取2个最匹配的点
         matches = flann.knnMatch(des_sch, des_src, k=2)
         good = []
-        for m,n in matches:
-            if m.distance < 0.9*n.distance:
+        for m, n in matches:
+            # 剔除掉跟第二匹配太接近的特征点
+            if m.distance < 0.9 * n.distance:
                 good.append(m)
 
         if len(good) < min_match_count:
@@ -212,8 +218,9 @@ def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
 
         # M是转化矩阵
         M, mask = cv2.findHomography(sch_pts, img_pts, cv2.RANSAC, 5.0)
-        # matchesMask = mask.ravel().tolist()
+        matchesMask = mask.ravel().tolist()
 
+        # 计算四个角矩阵变换后的坐标，也就是在大图中的坐标
         h, w = im_search.shape[:2]
         pts = np.float32([ [0, 0], [0, h-1], [w-1, h-1], [w-1, 0] ]).reshape(-1, 1, 2)
         dst = cv2.perspectiveTransform(pts, M)
@@ -227,18 +234,16 @@ def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
         lt, br = pypts[0], pypts[2]
         middle_point = (lt[0]+w/2, lt[1]+h/2)
 
-        # result.append((middle_point, pypts))
-        print len(dst), len(kp_sch)
         result.append(dict(
             result = middle_point,
             rectangle = pypts,
-            confidence = 1.0*len(dst)/len(kp_sch)
+            confidence=min(1.0 * matchesMask.count(1) / 10, 1.0)
         ))
 
         if maxcnt and len(result) >= maxcnt:
             break
         
-        # 从特征点中删掉那些已经匹配过的
+        # 从特征点中删掉那些已经匹配过的, 用于寻找多个目标
         qindexes, tindexes = [], []
         for m in good:
             qindexes.append(m.queryIdx) # need to remove from kp_sch
@@ -250,9 +255,6 @@ def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
                 if i not in qindexes:
                     r = np.append(r, item)
             return r
-        # print type(des_sch[0][0])
-        # kp_sch = filter_index(qindexes, kp_sch)
-        # des_sch =filter_index(qindexes, des_sch)
         kp_src = filter_index(tindexes, kp_src)
         des_src = filter_index(tindexes, des_src)
 
@@ -260,16 +262,15 @@ def find_all_sift(im_source, im_search, min_match_count=10, maxcnt=0):
 
 def find_all(im_source, im_search, maxcnt=0):
     '''
-    优先SIFT，之后Template
+    优先Template，之后Sift
     @ return [(x,y), ...]
     '''
-    if sift_count(im_search) >= 20:
+    result = find_all_template(im_source, im_search, maxcnt=maxcnt)
+    if not result:
         result = find_all_sift(im_source, im_search, maxcnt=maxcnt)
-    else:
-        result = find_all_template(im_source, im_search, maxcnt=maxcnt)
-    if result is None:
+    if not result:
         return []
-    return [point for point, score in result]
+    return [match["result"] for match in result]
 
 def find(im_source, im_search):
     '''
@@ -293,25 +294,24 @@ def main():
     result = find_all_template(imsrc, imsch)
     print result
     pts = []
-    for pt, score in result:
+    for match in result:
+        pt = match["result"]
         mark_point(imsrc, pt)
         pts.append(pt)
     # pts.sort()
     show(imsrc)
     # print pts
     # print sorted(pts, key=lambda p: p[0])
-    
+
+    imsrc = imread('testdata/yl/bg_half.png')
+    imsch = imread('testdata/yl/q_small.png')
+    print result
     print 'SIFT count=', sift_count(imsch)
     print find_sift(imsrc, imsch)
     print find_all_sift(imsrc, imsch)
-    '''
-    for i in range(4):
-        cv2.line(imsrc, fourpts[i], fourpts[(i+1)%4], (0, 0, 0), 5)
-        # print pt.astype(np.int32).tolist()
-        # print pt, pt[0][0]
-        mark_point(imsrc, fourpts[i])
-    # show(imsrc)
-    ''' 
+    print find_all_template(imsrc, imsch)
+    print find_all(imsrc, imsch)
+
 
 if __name__ == '__main__':
     main()
