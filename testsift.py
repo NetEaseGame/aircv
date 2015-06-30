@@ -133,7 +133,7 @@ def find_show(src, dst):
             pypts.append(tuple(npt[0]))
 
         lt, br = pypts[0], pypts[2]
-        middle_point = (lt[0] + w / 2, lt[1] + h / 2)
+        middle_point = (lt[0] + br[0]) / 2, (lt[1] + br[1]) / 2
 
         result = dict(
             result=middle_point,
@@ -160,7 +160,7 @@ def find_show(src, dst):
 
 
 if __name__ == '__main__':
-    find_show("testdata/g18/screen_big.png", "testdata/g18/task.png")
+    find_show("testdata/g18/screen_big2.png", "testdata/g18/task2.png")
     # find_show("testdata/2s.png", "testdata/2t.png")
     # find_show("testdata/yl/bg_2.5.png", "testdata/yl/q_small.png")
     # find_show("testdata/yl/bg_2.png", "testdata/yl/q_big.png")

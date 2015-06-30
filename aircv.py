@@ -232,7 +232,7 @@ def find_all_sift(im_source, im_search, min_match_count=4, maxcnt=0):
             pypts.append(tuple(npt[0]))
 
         lt, br = pypts[0], pypts[2]
-        middle_point = (lt[0]+w/2, lt[1]+h/2)
+        middle_point = (lt[0] + br[0]) / 2, (lt[1] + br[1]) / 2
 
         result.append(dict(
             result = middle_point,
