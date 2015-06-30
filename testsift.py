@@ -160,8 +160,9 @@ def find_show(src, dst):
 
 
 if __name__ == '__main__':
+    find_show("testdata/g18/screen_big.png", "testdata/g18/task.png")
     # find_show("testdata/2s.png", "testdata/2t.png")
-    find_show("testdata/yl/bg_2.5.png", "testdata/yl/q_small.png")
+    # find_show("testdata/yl/bg_2.5.png", "testdata/yl/q_small.png")
     # find_show("testdata/yl/bg_2.png", "testdata/yl/q_big.png")
     # find_show("testdata/xyq/screen.png", "testdata/xyq/bk.png")
     # find_show("testdata/xyq/screen.png", "testdata/xyq/bp.png")
