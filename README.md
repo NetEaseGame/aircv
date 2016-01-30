@@ -62,6 +62,39 @@ maxcnt是可选参数，限制最多匹配的数量。
 ![2res](testdata/2res.png)
 
 
-## DEVELOPING
-
+## LICENSE
 LICENCE under [MIT](LICENSE)
+
+## Some other idea. Not implemented
+
+### example
+```
+import aircv
+
+imsrc = aircv.Image('demo.png')
+imobj = aircv.Image('object.png')
+
+print imsrc.find(imobj, method=aircv.FIND_TMPL) # or method=aircv.FIND_SIFT
+# expect aircv.Position(x=10, y=20, extra={'method': aircv.FIND\_TMPL, 'result': 0.98})
+
+print imobj.find_in(imsrc, method=aircv.FIND_TMPL)
+# expect aircv.Position(x=10, y=20)
+
+rect = aircv.Rect(left=80, top=10, width=50, height=90)
+# Rect define: React(left=0, top=0, right=None, bottom=None, width='100%', height='100%')
+pos = imsrc.find(imobj, rect=rect, method=aircv.FIND_TMPL)
+print pos
+# expect aircv.Position(x=10, y=20)
+
+print imsrc.drawPoint(pos) # .drawPoint(pos2)
+# expect aircv.Image object
+
+print imsrc.cv_object
+# expect numpy object
+
+imsrc.save('source.png')
+# An Exception raised when file exists
+
+print imsrc.same_size(imobj)
+# expect True or False
+```
