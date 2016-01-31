@@ -68,7 +68,7 @@ LICENCE under [MIT](LICENSE)
 ## Some other idea. Not implemented
 
 ### example
-```
+```python
 import aircv
 
 imsrc = aircv.Image('demo.png')
@@ -81,13 +81,18 @@ print imobj.find_in(imsrc, method=aircv.FIND_TMPL)
 # expect aircv.Position(x=10, y=20)
 
 rect = aircv.Rect(left=80, top=10, width=50, height=90)
-# Rect define: React(left=0, top=0, right=None, bottom=None, width='100%', height='100%')
+# Rect define: Rect(left=0, top=0, right=None, bottom=None, width='100%', height='100%')
 pos = imsrc.find(imobj, rect=rect, method=aircv.FIND_TMPL)
 print pos
 # expect aircv.Position(x=10, y=20)
 
-print imsrc.drawPoint(pos) # .drawPoint(pos2)
+print imsrc.draw_point(pos) # .draw_point(pos2)
 # expect aircv.Image object
+
+print imsrc.draw_rectangle(aircv.Rect(left=80))
+# expect aircv.Image object
+
+print imsrc.draw_circle(??)
 
 print imsrc.cv_object
 # expect numpy object
@@ -95,6 +100,8 @@ print imsrc.cv_object
 imsrc.save('source.png')
 # An Exception raised when file exists
 
-print imsrc.same_size(imobj)
+print imsrc.rect() == imobj.rect()
 # expect True or False
+
+print imsrc.percent(imobj)
 ```
