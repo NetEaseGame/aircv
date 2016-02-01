@@ -61,6 +61,8 @@ maxcnt是可选参数，限制最多匹配的数量。
 
 ![2res](testdata/2res.png)
 
+## 开发规范
+[开发规范](docs/DEVELOPEMNT.md)
 
 ## LICENSE
 LICENCE under [MIT](LICENSE)
