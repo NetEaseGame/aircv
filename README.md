@@ -1,8 +1,7 @@
-aircv
-=====
-Python Lib based on python-opencv2 *for python2.7+*
+# aircv
+[![Build Status](https://travis-ci.org/NetEase/aircv.svg?branch=master)](https://travis-ci.org/NetEase/aircv)
 
-文档地址: <http://aircv.readthedocs.org/zh/latest/>
+Find object position based on python-opencv2 *for python2.7+*
 
 ## Usage
 
