@@ -41,7 +41,7 @@ ref: <http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html#
 
 '''
 
-__version__ = "0.1.4"
+__version__ = "0.1.x" # 0.1.5 laster, version managed by pbr(tags) now
 __project_url__ = "https://github.com/netease/aircv"
 
 import cv2
