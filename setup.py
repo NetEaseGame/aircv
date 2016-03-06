@@ -1,22 +1,26 @@
 # coding: utf-8
-from __future__ import print_function
 
-import aircv
+import setuptools
+setuptools.setup(setup_requires=['pbr'], pbr=True)
 
-#try: from distutils.core import setup
-#except ImportError: from setuptools import setup
-from setuptools import setup
+# from __future__ import print_function
 
-setup(
-      name='aircv',
-      version=aircv.__version__,
-      license="MIT",
-      description='Image utils based on python-opencv2',
+# import aircv
 
-      author='codeskyblue',
-      author_email='codeskyblue@gmail.com',
-      url='http://github.com/netease/aircv',
+# #try: from distutils.core import setup
+# #except ImportError: from setuptools import setup
+# from setuptools import setup
 
-      py_modules=['aircv'],
-      install_requires=[],
-)
+# setup(
+#       name='aircv',
+#       version=aircv.__version__,
+#       license="MIT",
+#       description='Image utils based on python-opencv2',
+
+#       author='codeskyblue',
+#       author_email='codeskyblue@gmail.com',
+#       url='http://github.com/netease/aircv',
+
+#       py_modules=['aircv'],
+#       install_requires=[],
+# )
