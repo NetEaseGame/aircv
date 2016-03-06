@@ -9,7 +9,7 @@ deploy:
   user: codeskyblue
   password:
     secure: N00nftDQHFznKxtaizbgMovg65+1o3+plPlLXP2fIDMMNIyjMa418tNnKc6ufFm+Mr/hBo0012SeZQqy8f5x/rvstr4NlQvbONBmO7F3Lo7SEI/Wvd+zvCTfZAMEG8eoh+vQrX5uYTV1cUWesVk3rUyXsUxit+EAPPtA3JB0qBw=
+  distributions: sdist bdist_wheel
   on:
     tags: true
-    distributions: sdist bdist_wheel
     repo: NetEase/aircv
