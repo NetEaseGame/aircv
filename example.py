@@ -27,7 +27,7 @@ def tmpl_test():
     import time
     start = time.time()
     print ac.find_all_template(t1, t2)
-    print time.time() - start
+    print 'Time used:', time.time() - start
 
 if __name__ == '__main__':
     sift_test()
