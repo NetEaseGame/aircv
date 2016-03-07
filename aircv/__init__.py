@@ -157,12 +157,9 @@ def find_all_template(im_source, im_search, threshold=0.5, maxcnt=0, rgb=False, 
         cv2.floodFill(res, None, max_loc, (-1000,), max_val-threshold+0.1, 1, flags=cv2.FLOODFILL_FIXED_RANGE)
     return result
 
-sift = cv2.SIFT(edgeThreshold=100)
-
-FLANN_INDEX_KDTREE = 0
-flann = cv2.FlannBasedMatcher({'algorithm': FLANN_INDEX_KDTREE, 'trees': 5}, dict(checks = 50))
 
 def sift_count(img):
+    sift = cv2.SIFT(edgeThreshold=100)
     kp, des = sift.detectAndCompute(img, None)
     return len(kp)
 
@@ -190,6 +187,11 @@ def find_all_sift(im_source, im_search, min_match_count=4, maxcnt=0):
         A tuple of found [{"point": point, "rectangle": rectangle, "confidence": 0.76}, ...]
         rectangle is a 4 points list
     '''
+    sift = cv2.SIFT(edgeThreshold=100)
+    FLANN_INDEX_KDTREE = 0
+    flann = cv2.FlannBasedMatcher({'algorithm': FLANN_INDEX_KDTREE, 'trees': 5}, dict(checks = 50))
+
+
     kp_sch, des_sch = sift.detectAndCompute(im_search, None)
     if len(kp_sch) < min_match_count:
         return None
