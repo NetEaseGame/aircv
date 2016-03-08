@@ -41,11 +41,12 @@ ref: <http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html#
 
 '''
 
+import cv2
+import numpy as np
+
 __version__ = "0.1.x" # 0.1.5 laster, version managed by pbr(tags) now
 __project_url__ = "https://github.com/netease/aircv"
 
-import cv2
-import numpy as np
 
 DEBUG = False
 
@@ -173,6 +174,8 @@ def find_sift(im_source, im_search, min_match_count=4):
     return res[0]
     
 
+FLANN_INDEX_KDTREE = 0
+
 def find_all_sift(im_source, im_search, min_match_count=4, maxcnt=0):
     '''
     使用sift算法进行多个相同元素的查找
@@ -188,9 +191,7 @@ def find_all_sift(im_source, im_search, min_match_count=4, maxcnt=0):
         rectangle is a 4 points list
     '''
     sift = cv2.SIFT(edgeThreshold=100)
-    FLANN_INDEX_KDTREE = 0
-    flann = cv2.FlannBasedMatcher({'algorithm': FLANN_INDEX_KDTREE, 'trees': 5}, dict(checks = 50))
-
+    flann = cv2.FlannBasedMatcher({'algorithm': FLANN_INDEX_KDTREE, 'trees': 5}, dict(checks=50))
 
     kp_sch, des_sch = sift.detectAndCompute(im_search, None)
     if len(kp_sch) < min_match_count:
@@ -220,11 +221,11 @@ def find_all_sift(im_source, im_search, min_match_count=4, maxcnt=0):
 
         # M是转化矩阵
         M, mask = cv2.findHomography(sch_pts, img_pts, cv2.RANSAC, 5.0)
-        matchesMask = mask.ravel().tolist()
+        matches_mask = mask.ravel().tolist()
 
         # 计算四个角矩阵变换后的坐标，也就是在大图中的坐标
         h, w = im_search.shape[:2]
-        pts = np.float32([ [0, 0], [0, h-1], [w-1, h-1], [w-1, 0] ]).reshape(-1, 1, 2)
+        pts = np.float32([[0, 0], [0, h-1], [w-1, h-1], [w-1, 0]]).reshape(-1, 1, 2)
         dst = cv2.perspectiveTransform(pts, M)
 
         # trans numpy arrary to python list
@@ -237,9 +238,9 @@ def find_all_sift(im_source, im_search, min_match_count=4, maxcnt=0):
         middle_point = (lt[0] + br[0]) / 2, (lt[1] + br[1]) / 2
 
         result.append(dict(
-            result = middle_point,
-            rectangle = pypts,
-            confidence=min(1.0 * matchesMask.count(1) / 10, 1.0)
+            result=middle_point,
+            rectangle=pypts,
+            confidence=(matches_mask.count(1), len(good)) #min(1.0 * matches_mask.count(1) / 10, 1.0)
         ))
 
         if maxcnt and len(result) >= maxcnt:
