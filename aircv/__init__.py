@@ -286,14 +286,14 @@ def main():
     print cv2.IMREAD_COLOR
     print cv2.IMREAD_GRAYSCALE
     print cv2.IMREAD_UNCHANGED
-    imsrc = imread('testdata/1s.png')
-    imsch = imread('testdata/1t.png')
+    imsrc = imread('../docs/testdata/1s.png')
+    imsch = imread('../docs/testdata/1t.png')
 
     pt = find(imsrc, imsch)
     mark_point(imsrc, pt)
     show(imsrc)
-    imsrc = imread('testdata/2s.png')
-    imsch = imread('testdata/2t.png')
+    imsrc = imread('../docs/testdata/2s.png')
+    imsch = imread('../docs/testdata/2t.png')
     result = find_all_template(imsrc, imsch)
     print result
     pts = []
@@ -306,8 +306,8 @@ def main():
     # print pts
     # print sorted(pts, key=lambda p: p[0])
 
-    imsrc = imread('testdata/yl/bg_half.png')
-    imsch = imread('testdata/yl/q_small.png')
+    imsrc = imread('../docs/testdata/yl/bg_half.png')
+    imsch = imread('../docs/testdata/yl/q_small.png')
     print result
     print 'SIFT count=', sift_count(imsch)
     print find_sift(imsrc, imsch)
