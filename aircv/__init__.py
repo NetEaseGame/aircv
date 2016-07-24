@@ -284,22 +284,35 @@ def find(im_source, im_search):
 
 
 def find_in(im_source, im_inter, im_target, method='template'):
-    """
-    在大图中寻找中图，再在中图中寻找小图
-    ps: assert(只取第一个中图)
+    """在大图中寻找中图，再在中图中寻找小图
+    assert(只取第一个中图)
     Args:
         im_source: 大图
         im_inter: 中图
         im_target: 小图
     """
-    # 在大图中找中图
-    r_intermediate = find_template(im_source, im_inter)
-    # 中图的四角坐标
-    in_rect = r_intermediate['rectangle']
-    # 在大图中找小图
-    r = find_all_template(im_source, im_target)
+    if 'template' in method:
+        r_in = find_template(im_source, im_inter)
+        r = find_all_template(im_source, im_target)
+    elif 'sift' in method:
+        r_in = find_sift(im_source, im_inter)
+        r = find_all_sift(im_source, im_target)
+    else:
+        r_in = find_template(im_source, im_inter)
+        if not r_in:
+            r_in = find_sift(im_source, im_inter)
 
-    # 比较 小图和中图的左上和右下坐标
+        r = find_all_template(im_source, im_target)
+        if not r:
+            r = find_all_sift(im_source, im_target)
+        # return None
+
+    if not (r and r_in):
+        return None
+
+    in_rect = r_in['rectangle']
+
+    # 比较小图和中图的左上和右下坐标
     for i in range(0, len(r), 1):
         r_rect = r[i]['rectangle']
         if _coordinate_cmp(r_rect[0], in_rect[0]):
@@ -309,7 +322,7 @@ def find_in(im_source, im_inter, im_target, method='template'):
 
 
 def _coordinate_cmp(a, b):
-    """
+    """两点位置判断 若点a在点b的右下方 返回true
     Args:
         a: (x0,y0)
         b: (x1,y1)
@@ -347,8 +360,13 @@ def main():
     # print pts
     # print sorted(pts, key=lambda p: p[0])
 
-    print '[>>>] find in'
-    pt = find_in('../docs/testdata/a.png', '../docs/testdata/b.png', '../docs/testdata/c.png')
+    im_a = imread('../docs/testdata/a.png')
+    im_b = imread('../docs/testdata/b.png')
+    im_c = imread('../docs/testdata/c.png')
+    show(im_a)
+    show(im_b)
+    show(im_c)
+    pt = find_in(im_a, im_b, im_c, 'template')
     if pt:
         print pt
         imsrc = imread('../docs/testdata/a.png')
@@ -363,8 +381,6 @@ def main():
     print find_all_sift(imsrc, imsch)
     print find_all_template(imsrc, imsch)
     print find_all(imsrc, imsch)
-
-
 
 
 if __name__ == '__main__':
