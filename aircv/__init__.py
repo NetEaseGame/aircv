@@ -282,18 +282,72 @@ def find(im_source, im_search):
     r = find_all(im_source, im_search, maxcnt=1)
     return r[0] if r else None
 
+
+def find_in(im_source, im_inter, im_target, method='template'):
+    """在大图中寻找中图，再在中图中寻找小图
+    assert(只取第一个中图)
+    Args:
+        im_source: 大图
+        im_inter: 中图
+        im_target: 小图
+    """
+    if 'template' in method:
+        r_in = find_template(im_source, im_inter)
+        r = find_all_template(im_source, im_target)
+    elif 'sift' in method:
+        r_in = find_sift(im_source, im_inter)
+        r = find_all_sift(im_source, im_target)
+    else:
+        r_in = find_template(im_source, im_inter)
+        if not r_in:
+            r_in = find_sift(im_source, im_inter)
+
+        r = find_all_template(im_source, im_target)
+        if not r:
+            r = find_all_sift(im_source, im_target)
+        # return None
+
+    if not (r and r_in):
+        return None
+
+    in_rect = r_in['rectangle']
+
+    # 比较小图和中图的左上和右下坐标
+    for i in range(0, len(r), 1):
+        r_rect = r[i]['rectangle']
+        if _coordinate_cmp(r_rect[0], in_rect[0]):
+            if _coordinate_cmp(in_rect[3], r_rect[3]):
+                return r[i]['result'][0], r[i]['result'][1]
+    return None
+
+
+def _coordinate_cmp(a, b):
+    """两点位置判断 若点a在点b的右下方 返回true
+    Args:
+        a: (x0,y0)
+        b: (x1,y1)
+        return: (x0>=x1) && (y0>=y1)? True:False
+    """
+    if len(a) == len(b):
+        for i in range(0, len(a), 1):
+            if a[i] < b[i]:
+                return False
+    else:
+        return False
+    return True
+
 def main():
     print cv2.IMREAD_COLOR
     print cv2.IMREAD_GRAYSCALE
     print cv2.IMREAD_UNCHANGED
-    imsrc = imread('testdata/1s.png')
-    imsch = imread('testdata/1t.png')
+    imsrc = imread('../docs/testdata/1s.png')
+    imsch = imread('../docs/testdata/1t.png')
 
     pt = find(imsrc, imsch)
     mark_point(imsrc, pt)
     show(imsrc)
-    imsrc = imread('testdata/2s.png')
-    imsch = imread('testdata/2t.png')
+    imsrc = imread('../docs/testdata/2s.png')
+    imsch = imread('../docs/testdata/2t.png')
     result = find_all_template(imsrc, imsch)
     print result
     pts = []
@@ -306,8 +360,21 @@ def main():
     # print pts
     # print sorted(pts, key=lambda p: p[0])
 
-    imsrc = imread('testdata/yl/bg_half.png')
-    imsch = imread('testdata/yl/q_small.png')
+    im_a = imread('../docs/testdata/a.png')
+    im_b = imread('../docs/testdata/b.png')
+    im_c = imread('../docs/testdata/c.png')
+    show(im_a)
+    show(im_b)
+    show(im_c)
+    pt = find_in(im_a, im_b, im_c, 'template')
+    if pt:
+        print pt
+        imsrc = imread('../docs/testdata/a.png')
+        mark_point(imsrc, pt)
+        show(imsrc)
+
+    imsrc = imread('../docs/testdata/yl/bg_half.png')
+    imsch = imread('../docs/testdata/yl/q_small.png')
     print result
     print 'SIFT count=', sift_count(imsch)
     print find_sift(imsrc, imsch)
