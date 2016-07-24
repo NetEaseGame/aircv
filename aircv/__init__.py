@@ -282,6 +282,47 @@ def find(im_source, im_search):
     r = find_all(im_source, im_search, maxcnt=1)
     return r[0] if r else None
 
+
+def find_in(im_source, im_inter, im_target, method='template'):
+    """
+    在大图中寻找中图，再在中图中寻找小图
+    ps: assert(只取第一个中图)
+    Args:
+        im_source: 大图
+        im_inter: 中图
+        im_target: 小图
+    """
+    # 在大图中找中图
+    r_intermediate = find_template(im_source, im_inter)
+    # 中图的四角坐标
+    in_rect = r_intermediate['rectangle']
+    # 在大图中找小图
+    r = find_all_template(im_source, im_target)
+
+    # 比较 小图和中图的左上和右下坐标
+    for i in range(0, len(r), 1):
+        r_rect = r[i]['rectangle']
+        if _coordinate_cmp(r_rect[0], in_rect[0]):
+            if _coordinate_cmp(in_rect[3], r_rect[3]):
+                return r[i]['result'][0], r[i]['result'][1]
+    return None
+
+
+def _coordinate_cmp(a, b):
+    """
+    Args:
+        a: (x0,y0)
+        b: (x1,y1)
+        return: (x0>=x1) && (y0>=y1)? True:False
+    """
+    if len(a) == len(b):
+        for i in range(0, len(a), 1):
+            if a[i] < b[i]:
+                return False
+    else:
+        return False
+    return True
+
 def main():
     print cv2.IMREAD_COLOR
     print cv2.IMREAD_GRAYSCALE
@@ -306,6 +347,14 @@ def main():
     # print pts
     # print sorted(pts, key=lambda p: p[0])
 
+    print '[>>>] find in'
+    pt = find_in('../docs/testdata/a.png', '../docs/testdata/b.png', '../docs/testdata/c.png')
+    if pt:
+        print pt
+        imsrc = imread('../docs/testdata/a.png')
+        mark_point(imsrc, pt)
+        show(imsrc)
+
     imsrc = imread('../docs/testdata/yl/bg_half.png')
     imsch = imread('../docs/testdata/yl/q_small.png')
     print result
@@ -314,6 +363,8 @@ def main():
     print find_all_sift(imsrc, imsch)
     print find_all_template(imsrc, imsch)
     print find_all(imsrc, imsch)
+
+
 
 
 if __name__ == '__main__':
