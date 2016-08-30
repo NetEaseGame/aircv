@@ -282,25 +282,22 @@ def find(im_source, im_search):
     r = find_all(im_source, im_search, maxcnt=1)
     return r[0] if r else None
 
-def brightness(im1, im2):
+def brightness(im):
     '''
-    比较两幅图像的平均亮度, 图像大小要一样 
-    @return the difference of the average brightness between img1 and img2
+    Return the brightness of an image
+    Args:
+        im(numpy): image
+
+    Returns:
+        float, average brightness of an image
     '''
-    if im1.shape != im2.shape:
-        return None
-    im_hsv1 = cv2.cvtColor(im1, cv2.COLOR_BGR2HSV)
-    im_hsv2 = cv2.cvtColor(im2, cv2.COLOR_BGR2HSV)
-    H1, S1, V1 = cv2.split(im_hsv1) 
-    H2, S2, V2 = cv2.split(im_hsv2) 
-    h, w = V1.shape[:2]
-    brightness1 = 0
-    brightness2 = 0
-    for i in V1:
-        brightness1 = brightness1+sum(i)
-    for j in V2:
-        brightness2 = brightness2+sum(j)
-    return float(brightness1-brightness2)/(h*w)
+    im_hsv = cv2.cvtColor(im, cv2.COLOR_BGR2HSV)
+    h, s, v = cv2.split(im_hsv) 
+    height, weight = v.shape[:2]
+    total_bright = 0
+    for i in v:
+        total_bright = total_bright+sum(i)
+    return float(total_bright)/(height*weight)
 
 
 def main():
@@ -309,6 +306,8 @@ def main():
     print cv2.IMREAD_UNCHANGED
     imsrc = imread('testdata/1s.png')
     imsch = imread('testdata/1t.png')
+    print brightness(imsrc)
+    print brightness(imsch)
 
     pt = find(imsrc, imsch)
     mark_point(imsrc, pt)
