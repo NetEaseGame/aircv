@@ -282,12 +282,32 @@ def find(im_source, im_search):
     r = find_all(im_source, im_search, maxcnt=1)
     return r[0] if r else None
 
+def brightness(im):
+    '''
+    Return the brightness of an image
+    Args:
+        im(numpy): image
+
+    Returns:
+        float, average brightness of an image
+    '''
+    im_hsv = cv2.cvtColor(im, cv2.COLOR_BGR2HSV)
+    h, s, v = cv2.split(im_hsv) 
+    height, weight = v.shape[:2]
+    total_bright = 0
+    for i in v:
+        total_bright = total_bright+sum(i)
+    return float(total_bright)/(height*weight)
+
+
 def main():
     print cv2.IMREAD_COLOR
     print cv2.IMREAD_GRAYSCALE
     print cv2.IMREAD_UNCHANGED
     imsrc = imread('testdata/1s.png')
     imsch = imread('testdata/1t.png')
+    print brightness(imsrc)
+    print brightness(imsch)
 
     pt = find(imsrc, imsch)
     mark_point(imsrc, pt)
