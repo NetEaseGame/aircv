@@ -161,7 +161,7 @@ def find_all_template(im_source, im_search, threshold=0.5, maxcnt=0, rgb=False, 
 
 
 def sift_count(img):
-    sift = cv2.SIFT(edgeThreshold=100) if cv2.hasattr(SIFT) else cv2.xfeatures2d.SIFT_create(edgeThreshold=100)
+    sift = cv2.SIFT(edgeThreshold=100) if hasattr(cv2, 'SIFT') else cv2.xfeatures2d.SIFT_create(edgeThreshold=100)
     kp, des = sift.detectAndCompute(img, None)
     return len(kp)
 
@@ -191,7 +191,7 @@ def find_all_sift(im_source, im_search, min_match_count=4, maxcnt=0):
         A tuple of found [{"point": point, "rectangle": rectangle, "confidence": 0.76}, ...]
         rectangle is a 4 points list
     '''
-    sift = cv2.SIFT(edgeThreshold=100) if cv2.hasattr(SIFT) else cv2.xfeatures2d.SIFT_create(edgeThreshold=100)
+    sift = cv2.SIFT(edgeThreshold=100) if hasattr(cv2, 'SIFT') else cv2.xfeatures2d.SIFT_create(edgeThreshold=100)
     flann = cv2.FlannBasedMatcher({'algorithm': FLANN_INDEX_KDTREE, 'trees': 5}, dict(checks=50))
 
     kp_sch, des_sch = sift.detectAndCompute(im_search, None)
