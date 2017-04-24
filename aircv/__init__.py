@@ -160,8 +160,14 @@ def find_all_template(im_source, im_search, threshold=0.5, maxcnt=0, rgb=False, 
     return result
 
 
+def _sift_instance(edge_threshold=100):
+    if hasattr(cv2, 'SIFT'):
+        return cv2.SIFT(edgeThreshold=edge_threshold)
+    return cv2.xfeatures2d.SIFT_create(edgeThreshold=edge_threshold)
+
+
 def sift_count(img):
-    sift = cv2.SIFT(edgeThreshold=100) if hasattr(cv2, 'SIFT') else cv2.xfeatures2d.SIFT_create(edgeThreshold=100)
+    sift = _sift_instance()
     kp, des = sift.detectAndCompute(img, None)
     return len(kp)
 
@@ -191,7 +197,7 @@ def find_all_sift(im_source, im_search, min_match_count=4, maxcnt=0):
         A tuple of found [{"point": point, "rectangle": rectangle, "confidence": 0.76}, ...]
         rectangle is a 4 points list
     '''
-    sift = cv2.SIFT(edgeThreshold=100) if hasattr(cv2, 'SIFT') else cv2.xfeatures2d.SIFT_create(edgeThreshold=100)
+    sift = _sift_instance()
     flann = cv2.FlannBasedMatcher({'algorithm': FLANN_INDEX_KDTREE, 'trees': 5}, dict(checks=50))
 
     kp_sch, des_sch = sift.detectAndCompute(im_search, None)
@@ -311,8 +317,8 @@ def main():
     print(brightness(imsch))
 
     pt = find(imsrc, imsch)
-    mark_point(imsrc, pt)
-    show(imsrc)
+    #mark_point(imsrc, pt)
+    #show(imsrc)
     imsrc = imread('testdata/2s.png')
     imsch = imread('testdata/2t.png')
     result = find_all_template(imsrc, imsch)
@@ -320,15 +326,15 @@ def main():
     pts = []
     for match in result:
         pt = match["result"]
-        mark_point(imsrc, pt)
+        #mark_point(imsrc, pt)
         pts.append(pt)
     # pts.sort()
-    show(imsrc)
+    #show(imsrc)
     # print pts
     # print sorted(pts, key=lambda p: p[0])
 
-    imsrc = imread('testdata/yl/bg_half.png')
-    imsch = imread('testdata/yl/q_small.png')
+    imsrc = imread('yl/bg_half.png')
+    imsch = imread('yl/q_small.png')
     print(result)
     print('SIFT count=', sift_count(imsch))
     print(find_sift(imsrc, imsch))
