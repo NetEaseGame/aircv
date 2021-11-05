@@ -125,8 +125,28 @@ def find_all_template(im_source, im_search, threshold=0.5, maxcnt=0, rgb=False, 
             resbgr[i] = cv2.matchTemplate(i_bgr[i], s_bgr[i], method)
         res = resbgr[0]*weight[0] + resbgr[1]*weight[1] + resbgr[2]*weight[2]
     else:
-        s_gray = cv2.cvtColor(im_search, cv2.COLOR_BGR2GRAY)
-        i_gray = cv2.cvtColor(im_source, cv2.COLOR_BGR2GRAY)
+        channel = 1 if len(im_search.shape) == 2 else im_search.shape[2]
+        if channel == 1:
+            # if the image is gray, then keep it
+            s_gray = im_search
+        elif channel == 3:
+            # if it's colorful, then convert it to gray
+            s_gray = cv2.cvtColor(im_search, cv2.COLOR_BGR2GRAY)
+        elif channel == 4:
+            # if it's colorful with transparent channel, then convert it to gray
+            s_gray = cv2.cvtColor(im_search, cv2.COLOR_BGRA2GRAY)
+
+        channel = 1 if len(im_source.shape) == 2 else im_source.shape[2]
+        if channel == 1:
+            # if the image is gray, then keep it
+            i_gray = im_source
+        elif channel == 3:
+            # if it's colorful, then convert it to gray
+            i_gray = cv2.cvtColor(im_source, cv2.COLOR_BGR2GRAY)
+        elif channel == 4:
+            # if it's colorful with transparent channel, then convert it to gray
+            i_gray = cv2.cvtColor(im_source, cv2.COLOR_BGRA2GRAY)
+
         # 边界提取(来实现背景去除的功能)
         if bgremove:
             s_gray = cv2.Canny(s_gray, 100, 200)
